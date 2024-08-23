@@ -737,68 +737,68 @@ def blogOne():
 #         pagination=pagination
 #         )
 
-# @app.route('/send-mess-pl', methods=['POST'])
-# def sendMess():
+@app.route('/send-mess-pl', methods=['POST'])
+def sendMess():
 
-#     if request.method == 'POST':
-#         form_data = request.json
-#         CLIENT_NAME = form_data['name']
-#         CLIENT_SUBJECT = form_data['subject']
-#         CLIENT_EMAIL = form_data['email']
-#         CLIENT_MESSAGE = form_data['message']
+    if request.method == 'POST':
+        form_data = request.json
+        CLIENT_NAME = form_data['name']
+        CLIENT_SUBJECT = form_data['subject']
+        CLIENT_EMAIL = form_data['email']
+        CLIENT_MESSAGE = form_data['message']
 
-#         if 'condition' not in form_data:
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Musisz zaakceptować naszą politykę prywatności!'
-#                 })
-#         if CLIENT_NAME == '':
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Musisz podać swoje Imię i Nazwisko!'
-#                 })
-#         if CLIENT_SUBJECT == '':
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Musisz podać temat wiadomości!'
-#                 })
-#         if CLIENT_EMAIL == '' or '@' not in CLIENT_EMAIL or '.' not in CLIENT_EMAIL or len(CLIENT_EMAIL) < 7:
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Musisz podać adres email!'
-#                 })
-#         if CLIENT_MESSAGE == '':
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Musisz podać treść wiadomości!'
-#                 })
+        if 'condition' not in form_data:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz zaakceptować naszą politykę prywatności!'
+                })
+        if CLIENT_NAME == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać swoje Imię i Nazwisko!'
+                })
+        if CLIENT_SUBJECT == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać temat wiadomości!'
+                })
+        if CLIENT_EMAIL == '' or '@' not in CLIENT_EMAIL or '.' not in CLIENT_EMAIL or len(CLIENT_EMAIL) < 7:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać adres email!'
+                })
+        if CLIENT_MESSAGE == '':
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać treść wiadomości!'
+                })
 
-#         zapytanie_sql = '''
-#                 INSERT INTO contact 
-#                     (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
-#                     VALUES (%s, %s, %s, %s, %s);
-#                 '''
-#         dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+        zapytanie_sql = '''
+                INSERT INTO contact 
+                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
+                    VALUES (%s, %s, %s, %s, %s);
+                '''
+        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
     
-#         if msq.insert_to_database(zapytanie_sql, dane):
-#             return jsonify(
-#                 {
-#                     'success': True, 
-#                     'message': f'Wiadomość została wysłana!'
-#                 })
-#         else:
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Wystąpił problem z wysłaniem Twojej wiadomości, skontaktuj się w inny sposób lub spróbuj później!'
-#                 })
+        if msq.insert_to_database(zapytanie_sql, dane):
+            return jsonify(
+                {
+                    'success': True, 
+                    'message': f'Wiadomość została wysłana!'
+                })
+        else:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Wystąpił problem z wysłaniem Twojej wiadomości, skontaktuj się w inny sposób lub spróbuj później!'
+                })
 
-#     return redirect(url_for('index'))
+    return redirect(url_for('index'))
 
 @app.route('/add-subs-pl', methods=['POST'])
 def addSubs():

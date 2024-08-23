@@ -40,29 +40,29 @@
          <div class="col-lg-8 col-md-6">
             <div class="contact-form wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
                <h2>Skontaktujmy się tutaj!</h2>
-               <form>
+               <form class="contact-form form" id="ajax-contact" method="post">
                   <ul class="row">
                      <li class="col-lg-6">
                         <label hidden for="name">Imię</label>
-                        <input type="text" id="name" placeholder="Imię" />
+                        <input type="text" id="name" name="name" placeholder="Imię" />
                      </li>
                      <li class="col-lg-6">
                         <label hidden for="eml">E-mail</label>
-                        <input type="email" id="eml" placeholder="E-mail" />
+                        <input type="email" id="eml" name="email" placeholder="E-mail" />
                      </li>
                      
                      <li class="col-lg-12">
                         <label hidden for="sub">Temat rozmowy</label>
-                        <input type="text" id="sub" placeholder="Temat rozmowy" />
+                        <input type="text" id="sub" name="subject" placeholder="Temat rozmowy" />
                      </li>
                      <li class="col-lg-12">
                         <label hidden for="msg">Twoja wiadomość</label>
-                        <textarea id="msg" placeholder="Twoja wiadomość" ></textarea>
+                        <textarea id="msg" name="message" placeholder="Twoja wiadomość" ></textarea>
                      </li>
                      <li class="col-lg-12">
                         <div class="row">
                            <div class="col-lg-1">
-                               <input class="polityka-switch" type="checkbox" id="polityka_przywatnosci" name="polityka">
+                               <input class="polityka-switch" type="checkbox" id="polityka_przywatnosci" name="condition">
                                <label class="polityka-switch-label" for="polityka_przywatnosci"></label>
                            </div>
                            <div class="col-lg-11">
@@ -73,18 +73,10 @@
                                </label>
                            </div>
                        </div> 
-                        <!-- <div class="form-check form-switch">
-                           <input class="polityka-switch-input" type="checkbox" role="switch" id="polityka_przywatnosci">
-                           <label class="polityka-switch" for="polityka_przywatnosci"></label>
-                           <label class="form-check-label" for="polityka_przywatnosci">
-                               Akceptuję politykę prywatności DMD TRANSPORT, niniejszym wyrażam zgodę na 
-                               przetwarzanie moich danych osobowych zawartych w niniejszym formularzu w celach 
-                               kontaktowych, zgodnie z obowiązującą polityką prywatności.
-                           </label>
-                       </div> -->
                      </li>
                   </ul>
                   <button type="submit" class="cta-btn btn_orange" >WYŚLIJ WIADOMOŚĆ</button>
+                  <div class="form-message" id="komunikat_z_serwera"></div>
                </form>
             </div>
          </div>
@@ -174,6 +166,44 @@
 
          // Aktualizuje pole tekstowe w czasie rzeczywistym
          phoneInput.value = formattedNumber;
+      });
+   });
+
+   document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById('ajax-contact').addEventListener('submit', function(e) {
+            e.preventDefault(); // Zapobiegaj domyślnej akcji formularza
+            const formData = new FormData(this); // Użyj 'this', aby odnieść się do formularza
+            const jsonFormData = Object.fromEntries(formData.entries());
+
+            fetch('/send-mess-pl', {
+               method: 'POST',
+               headers: {
+                  'Content-Type': 'application/json',
+               },
+               body: JSON.stringify(jsonFormData) // Przekazuj dane z formularza
+            })
+            .then(response => response.json())
+            .then(data => {
+               // console.log(data);
+
+               const komunikatDiv = document.getElementById("komunikat_z_serwera");
+               if (komunikatDiv) {
+                  komunikatDiv.innerHTML = data.message;
+                  // Ustawienie koloru komunikatu na podstawie wartości 'success'
+                  if(data.success) {
+                        komunikatDiv.style.color = "#30ff00"; // Sukces - zielony
+                        document.getElementById('ajax-contact').reset();
+                  } else {
+                        komunikatDiv.style.color = "#ff3535"; // Niepowodzenie - czerwony
+                  }
+                  setTimeout(function() {
+                        komunikatDiv.innerHTML = '';
+                  }, 5000);
+               }
+            })
+            .catch((error) => {
+               console.error('Error:', error);
+            });
       });
    });
 </script>
