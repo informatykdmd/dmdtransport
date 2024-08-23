@@ -132,20 +132,20 @@ def take_data_table(key, table):
 #             teamData.append(theme)
 #     return teamData
 
-# def generator_subsDataDB():
-#     subsData = []
-#     took_subsD = take_data_table('*', 'newsletter')
-#     for data in took_subsD:
-#         if data[4] != 1: continue
-#         ID = data[0]
-#         theme = {
-#             'id': ID, 
-#             'email':data[2],
-#             'name':data[1], 
-#             'status': str(data[4]), 
-#             }
-#         subsData.append(theme)
-#     return subsData
+def generator_subsDataDB():
+    subsData = []
+    took_subsD = take_data_table('*', 'newsletter')
+    for data in took_subsD:
+        if data[4] != 1: continue
+        ID = data[0]
+        theme = {
+            'id': ID, 
+            'email':data[2],
+            'name':data[1], 
+            'status': str(data[4]), 
+            }
+        subsData.append(theme)
+    return subsData
 
 # def generator_daneDBList(lang='pl'):
 #     daneList = []
@@ -800,48 +800,48 @@ def blogOne():
 
 #     return redirect(url_for('index'))
 
-# @app.route('/add-subs-pl', methods=['POST'])
-# def addSubs():
-#     subsList = generator_subsDataDB() # pobieranie danych subskrybentów
+@app.route('/add-subs-pl', methods=['POST'])
+def addSubs():
+    subsList = generator_subsDataDB() # pobieranie danych subskrybentów
 
-#     if request.method == 'POST':
-#         form_data = request.json
+    if request.method == 'POST':
+        form_data = request.json
 
-#         SUB_NAME = form_data['Imie']
-#         SUB_EMAIL = form_data['Email']
-#         USER_HASH = secrets.token_hex(20)
+        SUB_NAME = form_data['Imie']
+        SUB_EMAIL = form_data['Email']
+        USER_HASH = secrets.token_hex(20)
 
-#         allowed = True
-#         for subscriber in subsList:
-#             if subscriber['email'] == SUB_EMAIL:
-#                 allowed = False
+        allowed = True
+        for subscriber in subsList:
+            if subscriber['email'] == SUB_EMAIL:
+                allowed = False
 
-#         if allowed:
-#             zapytanie_sql = '''
-#                     INSERT INTO newsletter 
-#                         (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH) 
-#                         VALUES (%s, %s, %s, %s);
-#                     '''
-#             dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH)
-#             if msq.insert_to_database(zapytanie_sql, dane):
-#                 return jsonify(
-#                     {
-#                         'success': True, 
-#                         'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'
-#                     })
-#             else:
-#                 return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Niestety nie udało nam się zarejestrować Twojej subskrypcji z powodu niezidentyfikowanego błędu!'
-#                 })
-#         else:
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Podany adres email jest już zarejestrowany!'
-#                 })
-#     return redirect(url_for('index'))
+        if allowed:
+            zapytanie_sql = '''
+                    INSERT INTO newsletter 
+                        (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH) 
+                        VALUES (%s, %s, %s, %s);
+                    '''
+            dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH)
+            if msq.insert_to_database(zapytanie_sql, dane):
+                return jsonify(
+                    {
+                        'success': True, 
+                        'message': f'Zgłoszenie nowego subskrybenta zostało wysłane, aktywuj przez email!'
+                    })
+            else:
+                return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Niestety nie udało nam się zarejestrować Twojej subskrypcji z powodu niezidentyfikowanego błędu!'
+                })
+        else:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Podany adres email jest już zarejestrowany!'
+                })
+    return redirect(url_for('index'))
 
 # @app.route('/add-comm-pl', methods=['POST'])
 # def addComm():
