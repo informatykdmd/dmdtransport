@@ -1,9 +1,9 @@
 from flask import Flask, render_template, redirect, url_for, jsonify, session, request, send_from_directory
 from flask_paginate import Pagination, get_page_args
-# import mysqlDB as msq
+import mysqlDB as msq
 import secrets
 from datetime import datetime
-# from googletrans import Translator
+from googletrans import Translator
 import random
 
 from markupsafe import Markup
@@ -27,11 +27,11 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 app.config['SESSION_TYPE'] = 'filesystem'  # Możesz wybrać inny backend, np. 'redis', 'sqlalchemy', itp.
 Session(app)
 
-# def getLangText(text):
-#     """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
-#     translator = Translator()
-#     translation = translator.translate(str(text), dest='en')
-#     return translation.text
+def getLangText(text):
+    """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
+    translator = Translator()
+    translation = translator.translate(str(text), dest='en')
+    return translation.text
 
 def format_date(date_input, pl=True):
     ang_pol = {
@@ -100,13 +100,13 @@ def get_offers_from_csv(filename='oferta-sprzet.csv'):
     return export
 
 #  Funkcja pobiera dane z bazy danych 
-# def take_data_where_ID(key, table, id_name, ID):
-#     dump_key = msq.connect_to_database(f'SELECT {key} FROM {table} WHERE {id_name} = {ID};')
-#     return dump_key
+def take_data_where_ID(key, table, id_name, ID):
+    dump_key = msq.connect_to_database(f'SELECT {key} FROM {table} WHERE {id_name} = {ID};')
+    return dump_key
 
-# def take_data_table(key, table):
-#     dump_key = msq.connect_to_database(f'SELECT {key} FROM {table};')
-#     return dump_key
+def take_data_table(key, table):
+    dump_key = msq.connect_to_database(f'SELECT {key} FROM {table};')
+    return dump_key
 
 
 
@@ -190,28 +190,28 @@ def get_offers_from_csv(filename='oferta-sprzet.csv'):
 #         daneList.append(theme)
 #     return daneList
 
-# def generator_daneDBList_short(lang='pl'):
-#     daneList = []
-#     took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
-#     for post in took_allPost:
+def generator_daneDBList_short(lang='pl'):
+    daneList = []
+    took_allPost = msq.connect_to_database(f'SELECT * FROM blog_posts ORDER BY ID DESC;') # take_data_table('*', 'blog_posts')
+    for post in took_allPost:
 
-#         id_content = post[1]
-#         id_author = post[2]
+        id_content = post[1]
+        id_author = post[2]
 
-#         theme = {
-#             'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
-#             'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
+        theme = {
+            'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
+            'title': take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('TITLE', 'contents', 'ID', id_content)[0][0]),
             
-#             'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
-#             'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
+            'highlight': take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('HIGHLIGHTS', 'contents', 'ID', id_content)[0][0]),
+            'mainFoto': take_data_where_ID('HEADER_FOTO', 'contents', 'ID', id_content)[0][0],
             
-#             'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
-#             'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
-#             'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
+            'category': take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0] if lang=='pl' else getLangText(take_data_where_ID('CATEGORY', 'contents', 'ID', id_content)[0][0]),
+            'data': format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0]) if lang=='pl' else format_date(take_data_where_ID('DATE_TIME', 'contents', 'ID', id_content)[0][0], False),
+            'author': take_data_where_ID('NAME_AUTHOR', 'authors', 'ID', id_author)[0][0],
 
-#         }
-#         daneList.append(theme)
-#     return daneList
+        }
+        daneList.append(theme)
+    return daneList
 
 # def generator_daneDBList_prev_next(main_id):
 #     # Załóżmy, że msq.connect_to_database() zwraca listę tuple'i reprezentujących posty, np. [(1, 'Content1'), (2, 'Content2'), ...]
@@ -355,26 +355,16 @@ def smart_truncate(content, length=400):
 def index():
     session['page'] = 'index'
     pageTitle = 'Strona Główna'
-
-    # if f'TEAM-ALL' not in session:
-    #     team_list = generator_teamDB()
-    #     session[f'TEAM-ALL'] = team_list
-    # else:
-    #     team_list = session[f'TEAM-ALL']
-
-    # fourListTeam = []
-    # for i, member in enumerate(team_list):
-    #     if  i < 4: fourListTeam.append(member)
-        
-    # if f'BLOG-SHORT' not in session:
-    #     blog_post = generator_daneDBList_short()
-    #     session[f'BLOG-SHORT'] = blog_post
-    # else:
-    #     blog_post = session[f'BLOG-SHORT']
+       
+    if f'BLOG-SHORT' not in session:
+        blog_post = generator_daneDBList_short()
+        session[f'BLOG-SHORT'] = blog_post
+    else:
+        blog_post = session[f'BLOG-SHORT']
     
-    # blog_post_three = []
-    # for i, member in enumerate(blog_post):
-    #     if  i < 3: blog_post_three.append(member)
+    blog_post_two = []
+    for i, member in enumerate(blog_post):
+        if  i < 2: blog_post_two.append(member)
 
     cala_oferta = get_offers_from_csv()
     oferta = []
@@ -385,8 +375,7 @@ def index():
     return render_template(
         f'index.html',
         pageTitle=pageTitle,
-        # fourListTeam=fourListTeam, 
-        # blog_post_three=blog_post_three,
+        blog_post_two=blog_post_two,
         oferta=oferta
         )
 

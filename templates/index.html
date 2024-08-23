@@ -462,25 +462,27 @@
          </div>
       </div>
       <div class="row justify-content-center">
+         {% for postData in blog_post_two %}
          <div class="col-sm-6">
             <div class="blog-item wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
                <div class="blog-img">
-                  <a href="blog-details.html">
-                  <img src="https://dmddomy.pl/images/blog/17230268231920.png" alt="img" />
+                  <a href="/blog-one?post={{postData['id']}}">
+                  <img src="{{postData['mainFoto']}}" alt="img" />
                   </a>
                </div>
                <div class="blog-text">
                   <div class="blog-meta">
-                     <a href="javascript:;">Paweł Perliński</a>
-                     <a href="javascript:;">7 sierpnia 2024</a>
+                     <a href="/blog-one?post={{postData['id']}}">{{postData['author']}}</a>
+                     <a href="/blog-one?post={{postData['id']}}">{{postData['data']}}</a>
                   </div>
                   <h5>
-                     <a href="blog-details.html">Mobilne Pracownie w Opypach: Nowa Jakość Edukacji</a>
+                     <a href="/blog-one?post={{postData['id']}}">{{postData['title']}}</a>
                   </h5>
                </div>
             </div>
          </div>
-         <div class="col-sm-6">
+         {% endfor %}
+         <!-- <div class="col-sm-6">
             <div class="blog-item wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
                <div class="blog-img">
                   <a href="blog-details.html">
@@ -497,7 +499,7 @@
                   </h5>
                </div>
             </div>
-         </div>
+         </div> -->
       </div>
       <div class="section-action text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
          <a href="blog.html" class="cta-btn btn_orange">ZOBACZ WIĘCEJ</a>
