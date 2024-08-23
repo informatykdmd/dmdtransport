@@ -3836,5 +3836,7 @@ aside .widget:last-child {
     vertical-align: middle;
 }
 
-
+.form-message {
+	margin-top: 20px;
+}
 
