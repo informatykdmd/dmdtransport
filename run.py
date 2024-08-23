@@ -9,14 +9,14 @@ import random
 from markupsafe import Markup
 from flask_session import Session
 
-import pandas as pd
+# import pandas as pd
 
-def excel_to_csv(excel_file, csv_file):
-    # Wczytaj plik Excel
-    df = pd.read_excel(excel_file)
+# def excel_to_csv(excel_file, csv_file):
+#     # Wczytaj plik Excel
+#     df = pd.read_excel(excel_file)
     
-    # Zapisz do pliku CSV
-    df.to_csv(csv_file, index=False)
+#     # Zapisz do pliku CSV
+#     df.to_csv(csv_file, index=False)
 
 # Przykład użycia:
 # excel_to_csv('plik.xlsx', 'plik.csv')
