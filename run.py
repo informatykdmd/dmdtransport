@@ -5,6 +5,7 @@ import secrets
 from datetime import datetime
 from googletrans import Translator
 import random
+import re
 
 from markupsafe import Markup
 from flask_session import Session
@@ -315,6 +316,15 @@ def generator_daneDBList_short(lang='pl'):
 #         }
 #         daneList.append(theme)
 #     return daneList
+
+def is_valid_phone(phone):
+    # Wzorzec dla numeru telefonu: zaczyna się opcjonalnym plusem, po którym następuje 9-15 cyfr
+    pattern = re.compile(r'^\+?\d{9,15}$')
+    
+    if pattern.match(phone):
+        return True
+    else:
+        return False
 
 ############################
 ##      ######           ###
@@ -796,6 +806,49 @@ def sendMess():
                 {
                     'success': False, 
                     'message': f'Wystąpił problem z wysłaniem Twojej wiadomości, skontaktuj się w inny sposób lub spróbuj później!'
+                })
+
+    return redirect(url_for('index'))
+
+
+@app.route('/ask-phone', methods=['POST'])
+def askPhone():
+
+    if request.method == 'POST':
+        form_data = request.json
+        CLIENT_NAME = 'Użytkownik strony DMD Transport'
+        CLIENT_EMAIL = 'brak@adresu.email'
+        CLIENT_SUBJECT = 'Prośba o kontakt ze strony DMD Transport'
+        CLIENT_PHONE = form_data['phone']
+        CLIENT_MESSAGE = f'Proszę o kontakt {CLIENT_PHONE}'
+
+        
+        if CLIENT_PHONE == '' or not is_valid_phone(CLIENT_PHONE):
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Musisz podać swój nr telefonu!'
+                })
+        
+
+        zapytanie_sql = '''
+                INSERT INTO contact 
+                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
+                    VALUES (%s, %s, %s, %s, %s);
+                '''
+        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+    
+        if msq.insert_to_database(zapytanie_sql, dane):
+            return jsonify(
+                {
+                    'success': True, 
+                    'message': f'Numer został wysłany!'
+                })
+        else:
+            return jsonify(
+                {
+                    'success': False, 
+                    'message': f'Wystąpił problem z wysłaniem Twojego numeru telefonu, skontaktuj się w inny sposób lub spróbuj później!'
                 })
 
     return redirect(url_for('index'))
