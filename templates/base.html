@@ -180,6 +180,7 @@
                         <div class="col-lg-4 col-md-6">
                            <div class="footer-widget">
                               <h5 class="foter-title">Ostatnie Newsy</h5>
+                              <form id="newsletter_form" >
                               <ul class="footer-post">
                                  {% for post in latest_blog_posts %}
                                  <li>
@@ -192,7 +193,7 @@
                                  </li>
                                  {% endfor %}
                                  <li>
-                                    <form id="newsletter_form" >
+                                    
                                        <div class="subscribe-name">
                                           <input type="text" id="newsletterNameField" name="Imie" value="" placeholder="Imię" required>
                                        </div>
@@ -201,9 +202,10 @@
                                           <button type="submit" id="send_newsletter"><span class="fa fa-paper-plane"></span></button>
                                        </div>
                                        <div style="margin-top: 1em;" id="komunikat_z_serwera_newsletter"></div>
-                                    </form>
+                                    
                                  </li>
                               </ul>
+                              </form>
                            </div>
                         </div>
                         <div class="col-lg-3">
