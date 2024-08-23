@@ -6,3 +6,4 @@ gunicorn_config.py
 run_exaple.py
 run_ex.py
 run_example.py
+/flask_session/*
