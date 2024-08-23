@@ -143,24 +143,16 @@
                            <div class="footer-widget">
                               <h5 class="foter-title">Ostatnie Newsy</h5>
                               <ul class="footer-post">
+                                 {% for post in latest_blog_posts %}
                                  <li>
-                                    
                                     <div class="sm-post">
-                                       <a href="javascript:;">
-                                          <p>The Start-Up Ultimate Guide to Make Your WordPress Journal.</p>
+                                       <a href="/blog-one?post={{ post.id }}">
+                                          <p>{{ post.title }}</p>
                                        </a>
-                                       <span class="date">14 Jan 2022</span>
+                                       <span class="date">{{ post.data }}</span>
                                     </div>
                                  </li>
-                                 <li>
-                                    
-                                    <div class="sm-post">
-                                       <a href="javascript:;">
-                                          <p>The Start-Up Ultimate Guide to Make Your WordPress Journal.</p>
-                                       </a>
-                                       <span class="date">14 Jan 2022</span>
-                                    </div>
-                                 </li>
+                                 {% endfor %}
                                  <li>
                                     <div class="subscribe-name">
                                        <input type="text" placeholder="Imię">
