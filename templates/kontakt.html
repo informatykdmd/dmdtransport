@@ -116,7 +116,7 @@
                   <p>Zostaw swój numer telefonu, a rychle oddzwonimy!</p>
                   <form id="ask-contact" method="post">
                       <input type="tel" name="phone" placeholder="Twój numer telefonu" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
-                      <a href="#" onclick="this.closest('form').submit();" ><i class="far fa-comment"></i> Wyślij</a>
+                      <a href="#" onclick="submitForm(event);" ><i class="far fa-comment"></i> Wyślij</a>
                       <div class="form-message" id="komunikat_z_serwera_ask_phone"></div>
                   </form>
               </div>
