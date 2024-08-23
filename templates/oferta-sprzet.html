@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Breadcrumb Start -->
+<section class="breadcrumb-area jarallax" data-background="static/img/breaccrumb-sprzet.jpg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="breadcrumb-box">
+               <h2>SPRZĘT</h2>
+               <ul>
+                  <li class="home"><a href="/"><span class="fas fa-home"></span></a></li>
+                  <li>Nasze maszyny</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Breadcrumb End -->
+<!-- Recent Project Start -->
+<section class="recent-project-area recent-project-page">
+   <div class="container">
+      <div class="row align-items-center">
+         <div class="col-lg-5">
+            <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
+               <h2 class="section-title">Nasze maszyny<br> do wynajęcia</h2>
+            </div>
+         </div>
+         <div class="col-lg-7">
+            <ul class="portfolio-filter wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s">
+               <li class="filter active" data-filter="*">Caly Sprzęt</li>
+               <li class="filter" data-filter=".hds">HDS</li>
+               <li class="filter" data-filter=".wywrotki">Wywrotki</li>
+               <li class="filter" data-filter=".siodlowe">Ciągniki Siodłowe</li>
+               <li class="filter" data-filter=".naczepy">Naczepy</li>
+               <li class="filter" data-filter=".dzwigi">Dźwigi</li>
+               <li class="filter" data-filter=".koparki">Koparki</li>
+               <li class="filter" data-filter=".ladowarki">Ładowarki</li>
+               <li class="filter" data-filter=".zageszczarki">Zagęszczarki</li>
+            </ul>
+         </div>
+      </div>
+      <div class="portfolio-warp wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+         <div class="row isotope_items">
+            {% for item in oferta %}
+            <!-- item -->
+            <div class="col-lg-4 col-sm-6 {{item['class']}}">
+               <div class="work-item work-image">
+                  <div class="project-img">
+                     <img src="static/img/{{item['foto-list']}}" alt="project">
+                  </div>
+                  <div class="project-text">
+                     <span>{{item['kategoria']}}</span>
+                     <h4><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">{{item['marka']}}</a></h4>
+                     {% if item['cena-mc'] %}
+                     <p>Cena wynajmu miesięcznego: {{item['cena-mc']}} PLN</p>
+                     {% elif item['cena-12xh'] %}
+                     <p>Cena wynajmu dziennego: {{item['cena-12xh'] * 12}} PLN</p>
+                     {% elif item['cena-godzina'] %}
+                     <p>Cena wynajmu na godziny:{{item['oferta-na-godziny']}} PLN/h</p>
+                     {% else %}
+                     <p>Urządzenie dostępne do wynajmu po wcześniejszym kontakcie.</p>
+                     {% endif %}
+                  </div>
+               </div>
+            </div>
+            <!-- item -->
+             {% endfor %}
+            
+         </div>
+         <!-- <div class="section-action text-center">
+            <a href="javascript:;" class="cta-btn btn_orange">Zadzwoń <i class="fa fa-phone"></i></a>
+         </div> -->
+      </div>
+   </div>
+</section>
+<!-- Recent Project End -->
+{% endblock %}
+{% block bottom_scripts %}
+<script>
+    $(document).ready(function(){
+        var selectedFilter = "{{ selected_filter }}";
+        var $grid = $('.isotope_items').isotope({
+            itemSelector: '.col-lg-4',
+            layoutMode: 'fitRows'
+        });
+
+        // Automatyczne ustawienie aktywnego filtra na podstawie parametru
+        if (selectedFilter) {
+            $grid.isotope({ filter: selectedFilter });
+            $('.portfolio-filter li').removeClass('active');
+            $('.portfolio-filter li[data-filter="' + selectedFilter + '"]').addClass('active');
+        }
+    });
+</script>
+{% endblock %}

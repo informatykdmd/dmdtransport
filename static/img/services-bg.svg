@@ -1,0 +1,14 @@
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 285" width="285" height="285">
+	<title>Services</title>
+	<defs>
+		<image width="285" height="285" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAR0AAAEdCAYAAAAxarN7AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAXeSURBVHgB7dkxakNRDAVRp8n+15sqGFIEktLWFPc8cHPwh0GFGj0ef9/nz49zzt/leQDnfMfzAM75kH/8+sPzff3zIeecv9JtYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLtecc6v3QbmnN+6gXDOC88DOOc7ngdwznc8D+CcD7nrFef82m1gzvmtGwjnvPA8gHO+43kA53zH8wDO+ZC7XnHOr90G5pzfuoFwzgvPAzjnO54HcM53PA/gnA+56xXn/NptYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLte8efj/NJtYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLtecc6v3QbmnN+6gXDOC88DOOc7ngdwznc8D+CcD7nrFef82m1gzvmtGwjnvPA8gHO+43kA53zH8wDO+ZC7XnHOr90G5pzfuoFwzgvPAzjnO54HcM53PA/gnA+56xXn/NptYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLtecc6v3QbmnN+6gXDOC88DOOc7ngdwznc8D+CcD7nrFef82m1gzvmtGwjnvPA8gHO+43kA53zH8wDO+ZC7XnHOr90G5pzfuoFwzgvPAzjnO54HcM53PA/gnA+56xXn/NptYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLtecc6v3QbmnN+6gXDOC88DOOc7ngdwznc8D+CcD7nrFef82m1gzvmtGwjnvPA8gHO+43kA53zH8wDO+ZC7XnHOr90G5pzfuoFwzgvPAzjnO54HcM53PA/gnA+56xXn/NptYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLtecc6v3QbmnN+6gXDOC88DOOc7ngdwznc8D+CcD7nrFef82m1gzvmtGwjnvPA8gHO+43kA53zH8wDO+ZC7XnHOr90G5pzfuoFwzgvPAzjnO54HcM53PA/gnA+56xXn/NptYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLtecc6v3QbmnN+6gXDOC88DOOc7ngdwznc8D+CcD7nrFef82m1gzvmtGwjnvPA8gHO+43kA53zH8wDO+ZC7XnHOr90G5pzfuoFwzgvPAzjnO54HcM53PA/gnA+56xXn/NptYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwPuesV5/zabWDO+a0bCOe88DyAc77jeQDnfMfzAM75kLtecc6v3QbmnN+6gXDOC88DOOc7ngdwznc8D+CcD7nrFef82m1gzvmtGwjnvPA8gHO+43kA53zH8wDO+ZC7XnHOr90G5pzfuoFwzgvPAzjnO54HcM53PA/gnA+56xXn/NptYM75rRsI57zwPIBzvuN5AOd8x/MAzvmQu15xzq/dBuac37qBcM4LzwM45zueB3DOdzwP4JwP+TcWV7OmkRXVdwAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		tspan { white-space:pre }
+	</style>
+	<g id="Services">
+		<g id="Interior decoration">
+			<use id="bg lines" href="#img1" transform="matrix(1,0,0,1,0,0)"/>
+		</g>
+	</g>
+</svg>

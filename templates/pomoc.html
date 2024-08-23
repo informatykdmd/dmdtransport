@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Faq Start -->
+<section class="faq-search-area">
+   <div class="container">
+      <div class="row" style="margin-top: 5em;">
+         <div class="col-lg-12">
+            <div class="faq-search wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+               <div class="section-heading text-center">
+                  <h2 class="section-title">Witaj w Dziale Pomocy!</h2>
+                  <p>
+                     Nasz zespół jest tutaj, aby uprościć Twoje doświadczenie na naszej platformie. <br />
+                     Poniżej znajdziesz kilka sekcji, które mogą Ci pomóc z zapytaniami, informacjami o polityce prywatności, <br />
+                     zasadami korzystania oraz innymi kwestiami. Jeśli nadal potrzebujesz pomocy, skorzystaj z formularza kontaktowego <br />
+                     lub skontaktuj się bezpośrednio z naszym zespołem. Jesteśmy gotowi, aby Ci pomóc! 
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="faq-content">
+         <div class="row">
+            <div class="col-lg-7 col-sm-7">
+               <div class="faq-accordion">
+                  <div class="accordion no-border me-lg-5" id="accordion">
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <h4 class="accordion-header">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                              Polityka Prywatności
+                           </button>
+                        </h4>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                           <div class="accordion-body">
+                              Zapoznaj się z naszą <a href="/subpage?target=polityka">polityką prywatności</a>, aby dowiedzieć się, jak dbamy o bezpieczeństwo Twoich danych osobowych. Twoja prywatność jest dla nas priorytetem. 
+                           </div>
+                        </div>
+                     </div>
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
+                        <h4 class="accordion-header">
+                           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="true" aria-controls="faq2">
+                              Zasady Korzystania z Witryny
+                           </button>
+                        </h4>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                           <div class="accordion-body">
+                              Przeczytaj nasze <a href="/subpage?target=zasady">zasady korzystania z witryny</a>, aby zrozumieć reguły i warunki korzystania z naszych usług. Zalecamy przestrzeganie tych zasad dla zwiększenia wydajności i bezpieczeństwa korzystania z platformy. 
+                           </div>
+                        </div>
+                     </div>
+                     <div class="accordion-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+                        <h4 class="accordion-header">
+                           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                              Kontakt
+                           </button>
+                        </h4>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordion">
+                           <div class="accordion-body">
+                              Potrzebujesz dodatkowej pomocy? Skorzystaj z <a href="/kontakt#contact-area">formularza kontaktowego</a> lub napisz bezpośrednio na adres e-mail naszego działu wsparcia: <a href="mailto:biuro@dmdbudownictwo.pl">biuro@dmdbudownictwo.pl</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-4 col-sm-5 ms-auto">
+               <div class="faqs-page-right">
+                  <div class="single-career-sidebar">
+                     <div class="quick-contact wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <h3>Szybki Kontakt</h3>
+                        <form>
+                           <p>
+                              <input type="text" placeholder="Twoje Imię">
+                           </p>
+                           <p>
+                              <input type="email" placeholder="Adres E-mail">
+                           </p>
+                           <p>
+                              <input type="text" placeholder="Temat">
+                           </p>
+                           <p>
+                              <textarea placeholder="Napisz swoją wiadomość tutaj..."></textarea>
+                           </p>
+                           <p>
+                              <button class="cta-btn btn_orange" type="submit">Wyślij Wiadomość</button>
+                           </p>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Faq End -->
+{% endblock %}

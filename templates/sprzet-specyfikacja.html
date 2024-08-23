@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Breadcrumb Start -->
+<section class="breadcrumb-area jarallax" data-background="static/img/breaccrumb-sprzet.jpg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="breadcrumb-box">
+               <h2>Oferta wynajmu sprzętu</h2>
+               <ul>
+                  <li class="home"><a href="/"><span class="fas fa-home"></span></a></li>
+                  <li>{{specyfikacja['kategoria']}}</li>
+                  <li>{{specyfikacja['marka']}}</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Breadcrumb End -->
+<!-- Project Details Start -->
+<section class="project-details-area">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="project-details-content">
+               <!-- <div class="project-details-slider owl-carousel wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                  <div class="item">
+                     <img src="static/img/project-details-1.jpg" alt="img" />
+                  </div>
+                  <div class="item">
+                     <img src="static/img/project-details-2.jpg" alt="img" />
+                  </div>
+               </div> -->
+               <div class="row">
+                  <div class="col-lg-8 col-md-7">
+                     <div class="project-details-text wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <h2>{{specyfikacja['marka']}} {% if specyfikacja['symbol'] %}{{specyfikacja['symbol']}}{% endif %}</h2>
+                        <p>
+                           {{specyfikacja['opis']}}
+                        </p>
+                     </div>
+                     <div class="project-details-solution wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+                        <div class="row">
+                           <div class="col-lg-6">
+                              <div class="mt-20">
+                                 <h3>Oferta wynajmu</h3>
+                                 <p>
+                                    {{specyfikacja['warunki-wynajmu']}}
+                                 </p>
+                                 {% if specyfikacja['cena-godziny'] %}
+                                 <!-- featured-icon-box -->
+                                 <div class="featured-icon-box">
+                                    <div class="featured-icon">
+                                       <i class="fa fa-cogs"></i>
+                                    </div>
+                                    
+                                    <div class="featured-content">
+                                       <div class="featured-title">
+                                          <h5>Na godziny</h5>
+                                       </div>
+                                       <div class="featured-desc">
+                                          <p>{{specyfikacja['oferta-na-godziny']}}</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- featured-icon-box end -->
+                                 {% endif %}
+                                 {% if specyfikacja['cena-12xh'] %}
+                                 <!-- featured-icon-box -->
+                                 <div class="featured-icon-box">
+                                    <div class="featured-icon">
+                                       <i class="fa fa-hourglass-half"></i>
+                                    </div>
+                                    <div class="featured-content">
+                                       <div class="featured-title">
+                                          <h5>Na dzień</h5>
+                                       </div>
+                                       <div class="featured-desc">
+                                          <p>{{specyfikacja['oferta-na-dzien']}}</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- featured-icon-box end -->
+                                 {% endif %}
+                                 {% if specyfikacja['cena-mc'] %}
+                                  <!-- featured-icon-box -->
+                                 <div class="featured-icon-box">
+                                    <div class="featured-icon">
+                                       <i class="fa fa-hourglass-half"></i>
+                                    </div>
+                                    <div class="featured-content">
+                                       <div class="featured-title">
+                                          <h5>Na miesiąc</h5>
+                                       </div>
+                                       <div class="featured-desc">
+                                          <p>{{specyfikacja['oferta-na-mc']}}</p>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <!-- featured-icon-box end -->
+                                 {% endif %}
+                              </div>
+                           </div>
+                           <div class="col-lg-6">
+                              <div class="cmt-featured-wrapper">
+                                 <img class="img-fluid" src="static/img/{{specyfikacja['foto']}}" alt="img">
+                              </div>
+                           </div>
+                           <div class="col-lg-12">
+                              <p class="mt-4">
+                                 {{specyfikacja['podsumowanie']}}
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-5">
+                     <div class="project-sidebar wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                        <div class="project-widget">
+                           <h3>Przeznaczenie sprzętu</h3>
+                           <p>{{specyfikacja['przeznaczenie']}}</p>
+                        </div>
+                        <div class="project-widget">
+                           <ul>
+                              <li>
+                                 <div class="project-widget-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                 </div>
+                                 <div class="project-widget-text">
+                                    <h4>Nazwa</h4>
+                                    <p>
+                                       {{specyfikacja['marka']}} {% if specyfikacja['symbol'] %}{{specyfikacja['symbol']}}{% endif %}
+                                    </p>
+                                 </div>
+                              </li>
+                              <li>
+                                 <div class="project-widget-icon">
+                                    <i class="far fa-user"></i>
+                                 </div>
+                                 <div class="project-widget-text">
+                                    <h4>Kategoria sprzętu</h4>
+                                    <p>{{specyfikacja['kategoria']}}</p>
+                                 </div>
+                              </li>
+                              {% if specyfikacja['udzwig-max'] %}
+                              <li>
+                                 <div class="project-widget-icon">
+                                    <i class="far fa-bookmark"></i>
+                                 </div>
+                                 <div class="project-widget-text">
+                                    <h4>Udźwig maksymalny</h4>
+                                    <p>{{specyfikacja['udzwig-max']}}</p>
+                                 </div>
+                              </li>
+                              {% endif %}
+                              {% if specyfikacja['udzwig-min'] %}
+                              <li>
+                                 <div class="project-widget-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                 </div>
+                                 <div class="project-widget-text">
+                                    <h4>Udźwig minimalny</h4>
+                                    <p>{{specyfikacja['udzwig-min']}}</p>
+                                 </div>
+                              </li>
+                              {% endif %}
+                              {% if specyfikacja['zasieg'] %}
+                              <li>
+                                 <div class="project-widget-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                 </div>
+                                 <div class="project-widget-text">
+                                    <h4>Zasięg</h4>
+                                    <p>{{specyfikacja['zasieg']}}</p>
+                                 </div>
+                              </li>
+                              {% endif %}
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="project-mission wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                  <h3>Oferujemy</h3>
+                  <p>
+                     {{specyfikacja['oferta-wynajmu']}}
+                  </p>
+               </div>
+               <div class="project-pagination d-flex align-items-center justify-content-between">
+                  <!-- <a href="javascript:;"><i class="fa fa-angle-double-left"></i> Previous</a> -->
+                  <a href="/kontakt#contact-area">Zamawiam <i class="fa fa-angle-double-right"></i></a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Project Details End -->
+
+{% endblock %}

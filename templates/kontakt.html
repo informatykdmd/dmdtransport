@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- Breadcrumb Start -->
+<section class="breadcrumb-area jarallax" data-background="static/img/breaccrumb-onas.jpg">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="breadcrumb-box">
+               <h2>Kontak z DMD Transport</h2>
+               <ul>
+                  <li class="home"><a href="/"><span class="fas fa-home"></span></a></li>
+                  <li>kontakt</li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Breadcrumb End -->
+<!-- Map Area Start -->
+<section class="contact-map-wrap">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="section-heading text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+               <h2 class="section-title">Wygodna lokalizacja!<br> Zobacz Google Map</h2>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id="map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2989.758129078646!2d20.827873297756266!3d52.252355551478445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471eb568eb75bfd1%3A0x902febd0544ee028!2sDworkowa%2051%2C%2005-082%20Stare%20Babice%2C%20Poland!5e0!3m2!1sen!2sbd!4v1724147071381!5m2!1sen!2sbd" style="border:0; width:100%" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+   </div>
+</section>
+<!-- Map Area End -->
+<!-- Contact Area Start -->
+<section class="contact-area" id="contact-area">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-8 col-md-6">
+            <div class="contact-form wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+               <h2>Skontaktujmy się tutaj!</h2>
+               <form>
+                  <ul class="row">
+                     <li class="col-lg-6">
+                        <label hidden for="name">Imię</label>
+                        <input type="text" id="name" placeholder="Imię" />
+                     </li>
+                     <li class="col-lg-6">
+                        <label hidden for="eml">E-mail</label>
+                        <input type="email" id="eml" placeholder="E-mail" />
+                     </li>
+                     
+                     <li class="col-lg-12">
+                        <label hidden for="sub">Temat rozmowy</label>
+                        <input type="text" id="sub" placeholder="Temat rozmowy" />
+                     </li>
+                     <li class="col-lg-12">
+                        <label hidden for="msg">Twoja wiadomość</label>
+                        <textarea id="msg" placeholder="Twoja wiadomość" ></textarea>
+                     </li>
+                     <li class="col-lg-12">
+                        <div class="row">
+                           <div class="col-lg-1">
+                               <input class="polityka-switch" type="checkbox" id="polityka_przywatnosci" name="polityka">
+                               <label class="polityka-switch-label" for="polityka_przywatnosci"></label>
+                           </div>
+                           <div class="col-lg-11">
+                               <label class="form-check-label" for="polityka_przywatnosci">
+                                   Akceptuję politykę prywatności DMD TRANSPORT, niniejszym wyrażam zgodę na 
+                                   przetwarzanie moich danych osobowych zawartych w niniejszym formularzu w celach 
+                                   kontaktowych, zgodnie z obowiązującą polityką prywatności.
+                               </label>
+                           </div>
+                       </div> 
+                        <!-- <div class="form-check form-switch">
+                           <input class="polityka-switch-input" type="checkbox" role="switch" id="polityka_przywatnosci">
+                           <label class="polityka-switch" for="polityka_przywatnosci"></label>
+                           <label class="form-check-label" for="polityka_przywatnosci">
+                               Akceptuję politykę prywatności DMD TRANSPORT, niniejszym wyrażam zgodę na 
+                               przetwarzanie moich danych osobowych zawartych w niniejszym formularzu w celach 
+                               kontaktowych, zgodnie z obowiązującą polityką prywatności.
+                           </label>
+                       </div> -->
+                     </li>
+                  </ul>
+                  <button type="submit" class="cta-btn btn_orange" >WYŚLIJ WIADOMOŚĆ</button>
+               </form>
+            </div>
+         </div>
+         <div class="col-lg-4 col-md-6">
+            <div class="contact-widget-right wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+               <h2>Inne opcje kontaktu</h2>
+               <div class="single-contact-info">
+                  <div class="icon">
+                     <i class="far fa-envelope"></i>
+                  </div>
+                  <div class="text">
+                     <span>Napisz do nas</span>
+                     <h5><a href="mailto:biuro@dmdbudownictwo.pl">biuro@dmdbudownictwo.pl</a></h5>
+                  </div>
+               </div>
+               <div class="single-contact-info">
+                  <div class="icon">
+                     <i class="fas fa-mobile-alt"></i>
+                  </div>
+                  <div class="text">
+                     <span>Zadzwoń do nas</span>
+                     <h5><a href="tel:+48736545454">+48 736 54 54 54</a></h5>
+                  </div>
+               </div>
+               <div class="single-contact-info">
+                  <div class="icon">
+                      <i class="fab fa-whatsapp"></i>
+                  </div>
+                  <div class="text">
+                      <span>Zadzwoń na WhatsApp</span>
+                      <h5><a href="https://wa.me/+48736545454?call">+48 736 54 54 54</a></h5>
+                  </div>
+              </div>
+              
+               <div class="live-chat">
+                  <h2>Oddzwonimy!</h2>
+                  <p>Zostaw swój numer telefonu, a rychle oddzwonimy!</p>
+                  <form action="#" method="POST">
+                      <input type="tel" name="phone" placeholder="Twój numer telefonu" required style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                      <a href="#" onclick="this.closest('form').submit();" ><i class="far fa-comment"></i> Wyślij</a>
+                  </form>
+              </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- Contact Area End -->
+{% endblock %}
+{% block bottom_scripts %}
+<script>
+   document.querySelector('.polityka-switch-label').addEventListener('click', function() {
+      const input = document.getElementById('polityka_przywatnosci');
+      input.checked = !input.checked;
+      input.value = input.checked ? 1 : 0; // Aktualizacja value checkboxa
+   });
+
+   document.addEventListener('DOMContentLoaded', function() {
+      const phoneInput = document.querySelector('input[name="phone"]');
+
+      phoneInput.addEventListener('input', function(event) {
+         let phoneNumber = phoneInput.value.replace(/\D/g, ''); // Usuwa wszystko poza cyframi
+         let formattedNumber = '';
+
+         // Tablica numerów kierunkowych sąsiadów Polski
+         const validCountryCodes = ['48', '49', '420', '421', '375', '380', '371', '370', '7'];
+
+         // Jeśli użytkownik zaczyna od "+" (numer kierunkowy jest w pełni poprawny)
+         if (phoneInput.value.startsWith('+')) {
+               formattedNumber = '+' + phoneNumber;
+         } else {
+               // Sprawdzamy, czy początkowe cyfry to numer kierunkowy
+               const countryCode = validCountryCodes.find(code => phoneNumber.startsWith(code));
+
+               if (countryCode) {
+                  formattedNumber = '+' + phoneNumber;
+               } else {
+                  // Jeśli to nie jest numer kierunkowy, dodajemy domyślnie polski kod
+                  formattedNumber = '+48' + phoneNumber;
+               }
+         }
+
+         // Zatrzymuje użytkownika na wpisaniu tylko 15 cyfr (maksymalna długość numeru telefonu)
+         if (formattedNumber.length > 15) {
+               formattedNumber = formattedNumber.substring(0, 15);
+         }
+
+         // Aktualizuje pole tekstowe w czasie rzeczywistym
+         phoneInput.value = formattedNumber;
+      });
+   });
+</script>
+{% endblock %}
