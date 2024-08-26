@@ -19,82 +19,87 @@
 <!-- Breadcrumb End -->
 <!-- Blog Page Start -->
 <section class="blog-page-area">
-   <div class="container">
-      <div class="row">
-         <div class="col-lg-8 col-md-7">
-            <div class="blog-page-left">
-               {% for res in posts %}
-               <div class="blog-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-                  <div class="blog-img">
-                     <a href="/blog-one?post={{res['id']}}">
-                     <img src="{{res['mainFoto']}}" alt="img" />
-                     </a>
-                  </div>
-                  <div class="blog-text">
-                     <div class="blog-meta">
-                        <a href="/blog-one/blog-one?post={{res['id']}}">{{res['author']}}</a>
-                        <a href="/blog-one/blog-one?post={{res['id']}}">{{res['data']}}</a>
-                     </div>
-                     <h5>
-                        <a href="/blog-one/blog-one?post={{res['id']}}">{{res['title']}}</a>
-                     </h5>
-                  </div>
-               </div>
-               {% endfor %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                {{pageTitle}} ({{found}})
             </div>
-            <div class="pagination-box-row text-center">
-               {% if pagination.total_pages > 1 %}
-                  <ul class="pagination">
-                     {% if pagination.has_prev %}
-                     <li>
-                        <a href="{{ url_for(request.endpoint, page=pagination.page - 1) }}"><i class="fa fa-angle-double-left"></i></a>
-                     </li>
-                     {% endif %}
-                     {% for page in pagination.pages %}
-                        {% if page %}
-                           {% if page != pagination.page %}
-                              <li><a href="{{ url_for(request.endpoint, page=page) }}">{{ page }}</a></li>
-                           {% else %}
-                              <li class="active"><a href="#">{{ page }}</a></li>
-                           {% endif %}
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-7">
+                <div class="blog-page-left">
+                {% for res in posts %}
+                <div class="blog-item wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <div class="blog-img">
+                        <a href="/blog-one?post={{res['id']}}">
+                        <img src="{{res['mainFoto']}}" alt="img" />
+                        </a>
+                    </div>
+                    <div class="blog-text">
+                        <div class="blog-meta">
+                            <a href="/blog-one/blog-one?post={{res['id']}}">{{res['author']}}</a>
+                            <a href="/blog-one/blog-one?post={{res['id']}}">{{res['data']}}</a>
+                        </div>
+                        <h5>
+                            <a href="/blog-one/blog-one?post={{res['id']}}">{{res['title']}}</a>
+                        </h5>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                <div class="pagination-box-row text-center">
+                {% if pagination.total_pages > 1 %}
+                    <ul class="pagination">
+                        {% if pagination.has_prev %}
+                        <li>
+                            <a href="{{ url_for(request.endpoint, page=pagination.page - 1) }}"><i class="fa fa-angle-double-left"></i></a>
+                        </li>
                         {% endif %}
-                     {% endfor %}
-                     {% if pagination.has_next %}
-                        <li><a href="{{ url_for(request.endpoint, page=pagination.page + 1) }}"><i class="fa fa-angle-double-right"></i></a></li>
-                     {% endif %}
-                  </ul>
-               {% endif %}
+                        {% for page in pagination.pages %}
+                            {% if page %}
+                            {% if page != pagination.page %}
+                                <li><a href="{{ url_for(request.endpoint, page=page) }}">{{ page }}</a></li>
+                            {% else %}
+                                <li class="active"><a href="#">{{ page }}</a></li>
+                            {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        {% if pagination.has_next %}
+                            <li><a href="{{ url_for(request.endpoint, page=pagination.page + 1) }}"><i class="fa fa-angle-double-right"></i></a></li>
+                        {% endif %}
+                    </ul>
+                {% endif %}
+                </div>
             </div>
-         </div>
-         <div class="col-lg-4 col-md-5">
-            <aside>
-               <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-                  <div class="widget-title text-center">
-                     <h4>Przeszukaj Blog</h4>
-                  </div>
-                  <div class="slidebar__form">
-                     <form method="POST" action="{{ url_for('searchBlog') }}" enctype="multipart/form-data">
-                        <input type="text" name="query" placeholder="Szukaj w blogach..." required>
-                        <button><i class="fa fa-search"></i></button>
-                     </form>
-                  </div>
-               </div>
-               
-               <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
-                  <div class="widget-title text-center">
-                     <h4>Śledź Nas</h4>
-                  </div>
-                  <div class="widget-social text-center">
-                     <a href="https://www.facebook.com/dmddomy/" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                     <a href="https://www.youtube.com/channel/UCBRN-SPMEIYK6YRV23Komxw" class="twitter" target="_blank"><i class="fab fa-youtube"></i></a>
-                     <a href="https://www.instagram.com/dmddomy/" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                  </div>
-               </div>
-               
-            </aside>
-         </div>
-      </div>
-   </div>
+            <div class="col-lg-4 col-md-5">
+                <aside>
+                <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <div class="widget-title text-center">
+                        <h4>Przeszukaj Blog</h4>
+                    </div>
+                    <div class="slidebar__form">
+                        <form method="POST" action="{{ url_for('searchBlog') }}" enctype="multipart/form-data">
+                            <input type="text" name="query" placeholder="Szukaj w blogach..." required>
+                            <button><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
+                    <div class="widget-title text-center">
+                        <h4>Śledź Nas</h4>
+                    </div>
+                    <div class="widget-social text-center">
+                        <a href="https://www.facebook.com/dmddomy/" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.youtube.com/channel/UCBRN-SPMEIYK6YRV23Komxw" class="twitter" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.instagram.com/dmddomy/" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                </aside>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- Blog Page End -->
 {% endblock %}
