@@ -23,7 +23,7 @@ from flask_session import Session
 # excel_to_csv('plik.xlsx', 'plik.csv')
 
 app = Flask(__name__)
-app.config['PER_PAGE'] = 6
+app.config['PER_PAGE'] = 4
 app.config['SECRET_KEY'] = secrets.token_hex(16)
 app.config['SESSION_TYPE'] = 'filesystem'  # Możesz wybrać inny backend, np. 'redis', 'sqlalchemy', itp.
 Session(app)
