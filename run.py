@@ -573,6 +573,8 @@ def blogs():
             'data': t_post['data']
         }
         recentPosts.append(theme)
+    
+    print(posts)
 
     return render_template(
         f'blog.html',
