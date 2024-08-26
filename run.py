@@ -695,9 +695,15 @@ def findByCategory():
 def findByTags():
 
     query = request.args.get('tag')
-    if not query and not request.args.get('page'):
+
+    if not query and not 'last_search' in session:
         print('Błąd requesta')
         return redirect(url_for('index'))
+    else:
+        if not 'last_search' in session:
+            session['last_search'] = query
+        else:
+            query = session['last_search']
         
     sqlQuery = """
                 SELECT ID FROM contents 
@@ -739,7 +745,8 @@ def findByTags():
         pageTitle=pageTitle,
         posts=posts,
         found=found,
-        pagination=pagination
+        pagination=pagination,
+        query=query
         )
 
 
