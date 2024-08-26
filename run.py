@@ -293,8 +293,8 @@ def generator_daneDBList_one_post_id(id_post, lang='pl'):
             comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
 
-            allCommentsByUser = take_data_where_ID('*', 'comments', 'AUTHOR_OF_COMMENT_ID', id_author)
-            
+            allCommentsByUser = take_data_where_ID('*', 'comments', 'AUTHOR_OF_COMMENT_ID', com[3])
+
             usr_stars_counter = 1
             if comments_dict[i]['avatar']:
                 usr_stars_counter += 1
