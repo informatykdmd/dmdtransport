@@ -51,11 +51,11 @@
                         <h4 class="qoute_meta"></h4>
                         <i class="fa fa-quote-left"></i>
                      </blockquote>
-                     {% for point in additionalList %}
+                     {% for point in choiced['additionalList'] %}
                         <p>{{point}}</p>
                      {% endfor %}
                      <div class="blog-cat">
-                        {% for tag in tags %}
+                        {% for tag in choiced['tags'] %}
                            <a href="/find-by-tags?tag={{tag}}">{{tag}}</a>
                         {% endfor %}
                      </div>
