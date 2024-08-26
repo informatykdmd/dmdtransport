@@ -86,32 +86,15 @@
                      </form>
                   </div>
                </div>
-               <!-- <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.4s">
-                  <div class="widget-title text-center">
-                     <h4>Instagram</h4>
-                  </div>
-                  <ul class="widget-insta-post">
-                     <li><a href="#"><img src="static/img/insta_01.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_02.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_03.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_04.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_05.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_06.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_03.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_06.png" alt="img"></a></li>
-                     <li><a href="#"><img src="static/img/insta_01.png" alt="img"></a></li>
-                  </ul>
-               </div> -->
+               
                <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s">
                   <div class="widget-title text-center">
                      <h4>Śledź Nas</h4>
                   </div>
                   <div class="widget-social text-center">
-                     <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
-                     <a href="#" class="twitter"><i class="fab fa-youtube"></i></a>
-                     <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
-                     <!-- <a href="#" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
-                     <a href="#" class="skype"><i class="fab fa-skype"></i></a> -->
+                     <a href="https://www.facebook.com/dmddomy/" class="facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                     <a href="https://www.youtube.com/channel/UCBRN-SPMEIYK6YRV23Komxw" class="twitter" target="_blank"><i class="fab fa-youtube"></i></a>
+                     <a href="https://www.instagram.com/dmddomy/" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
                   </div>
                </div>
                <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.8s">
@@ -119,12 +102,17 @@
                      <h4>Kategorie</h4>
                   </div>
                   <ul class="cat__list">
-                     <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Builders <span>(05)</span></a></li>
+                     {% for cat, count in cat_dict.items() %}
+                        {% if count > 1 %}
+                           <li><a href="/find-by-category?category={{cat}}"><i class="fa fa-angle-double-right"></i> {{cat}} <span>({{count}})</span></a></li>
+                        {% endif %}
+                     <!-- <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Builders <span>(05)</span></a></li>
                      <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Decorating <span>(34)</span></a></li>
                      <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Designing <span>(89)</span></a></li>
                      <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Industrial <span>(92)</span></a></li>
                      <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Preconstruction <span>(56)</span></a></li>
-                     <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Renovations <span>(16)</span></a></li>
+                     <li><a href="blog.html"><i class="fa fa-angle-double-right"></i> Renovations <span>(16)</span></a></li> -->
+                     {% endfor %}
                   </ul>
                </div>
                <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.0s">
@@ -132,53 +120,28 @@
                      <h4>Polecane</h4>
                   </div>
                   <div class="widget__post">
+                     <!-- <article class="post">
+                        <figure class="post-thumb"><img src="{{rPost['contentFoto']}}" alt=""><a href="/blog-one?post={{rPost['id']}}" class="overlay-box"><span class="icon fa fa-link"></span></a></figure>
+                        <div class="text"><a href="/blog-one?post={{rPost['id']}}">{{rPost['title']}}</a></div>
+                        <div class="post-info">{{rPost['data']}}</div>
+                        
+                        
+                     </article> -->
                      <ul>
-                        <li>
-                           <!-- <div class="widget__post-thumb">
-                              <img src="static/img/post_01.jpg" alt="">
-                           </div> -->
-                           <div class="widget__post-content">
-                              <h6><a href="blog-details.html">Alonso kelina falao asiano pero</a></h6>
-                              <span><i class="far fa-clock"></i>1 Hours ago</span>
-                           </div>
-                        </li>
-                        <li>
-                           <!-- <div class="widget__post-thumb">
-                              <img src="static/img/post_02.jpg" alt="">
-                           </div> -->
-                           <div class="widget__post-content">
-                              <h6><a href="blog-details.html">It is a long established fact that a reader</a></h6>
-                              <span><i class="far fa-clock"></i>3 Hours ago</span>
-                           </div>
-                        </li>
-                        <li>
-                           <!-- <div class="widget__post-thumb">
-                              <img src="static/img/post_03.jpg" alt="">
-                           </div> -->
-                           <div class="widget__post-content">
-                              <h6><a href="blog-details.html">Many desktop publish packages and web</a></h6>
-                              <span><i class="far fa-clock"></i>5 Hours ago</span>
-                           </div>
-                        </li>
-                        <!-- <li>
-                           <div class="widget__post-thumb">
-                              <img src="static/img/post_02.jpg" alt="">
-                           </div>
-                           <div class="widget__post-content">
-                              <h6><a href="blog-details.html">Various versions have evolved over the years</a></h6>
-                              <span><i class="far fa-clock"></i>6 Hours ago</span>
-                           </div>
-                        </li>
+                        {% for rPost in recentPosts %}
                         <li>
                            <div class="widget__post-thumb">
-                              <img src="static/img/post_03.jpg" alt="">
+                              <img src="{{rPost['contentFoto']}}" alt="">
                            </div>
                            <div class="widget__post-content">
-                              <h6><a href="blog-details.html">Photo booth anim 8-bit PBR 3 wolf moon.</a></h6>
-                              <span><i class="far fa-clock"></i>8 Hours ago</span>
+                              <h6><a href="/blog-one?post={{rPost['id']}}">{{rPost['title']}}</a></h6>
+                              <span><i class="far fa-clock"></i>{{rPost['data']}}</span>
                            </div>
-                        </li> -->
+                        </li>
+                        {% endfor %} 
                      </ul>
+
+                     
                   </div>
                </div>
                <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.2s">
