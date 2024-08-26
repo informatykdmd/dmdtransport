@@ -562,7 +562,11 @@ def blogs():
     session['page'] = 'blogs'
     pageTitle = 'Blog'
 
-    blog_post = generator_daneDBList()
+    if not 'blog_post' in session:
+        blog_post = generator_daneDBList()
+        session['blog_post'] = blog_post
+    else:
+        blog_post = session['blog_post']
 
     # Ustawienia paginacji
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
