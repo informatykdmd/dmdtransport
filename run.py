@@ -645,8 +645,13 @@ def findByCategory():
 
     query = request.args.get('category')
     if not query:
-        print('Błąd requesta')
-        return redirect(url_for('index'))
+        if not 'last_search' in session:
+            print('Błąd requesta')
+            return redirect(url_for('index'))
+        else:
+            query = session['last_search']
+    else:
+        session['last_search'] = query
         
     sqlQuery = """
                 SELECT ID FROM contents 
@@ -705,7 +710,6 @@ def findByTags():
     else:
         session['last_search'] = query
 
-        
     sqlQuery = """
                 SELECT ID FROM contents 
                 WHERE TAGS LIKE %s 
