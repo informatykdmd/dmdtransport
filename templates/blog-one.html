@@ -71,92 +71,54 @@
                   <div class="single-comment-box">
                      <div class="main-comment">
                         <div class="author-image">
-                           <img src="https://dmddomy.pl/images/team/tm-01-460x460-pawel_perlinski.png" alt="author">
+                           <img src="{{choiced['author_avatar']}}" alt="author">
                         </div>
                         <div class="blog-cat">
                            <div class="comment-info">
-                              <h4>lona Mendil</h4>
+                              <h4>{{choiced['author']}}</h4>
                            </div>
                            <div class="comment-text-inner">
-                              <p>Ne erat velit invidunt his. Eum in dicta veniam interesset, harum lupta definitionem. Vocibus suscipit prodesset vim ei, equidem perpetua eu per.</p>
+                              <p>{{choiced['author_about']}}</p>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
-               <div class="comment-group-title">
-                  <h3>Komentarze (03)</h3>
-               </div>
-               <div class="single-comment-item">
-                  <div class="single-comment-box">
-                     <div class="main-comment">
-                        <div class="author-image">
-                           <img src="static/img/author-noface.jpg" alt="author">
-                        </div>
-                        <div class="comment-text">
-                           <div class="comment-info">
-                              <h4>lona Mendil</h4>
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <!-- <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li> -->
-                              </ul>
-                              <p>4 minitues ago</p>
-                           </div>
-                           <div class="comment-text-inner">
-                              <p>Ne erat velit invidunt his. Eum in dicta veniam interesset, harum lupta definitionem. Vocibus suscipit prodesset vim ei, equidem perpetua eu per.</p>
-                           </div>
-                        </div>
-                     </div>
+               {% if choiced['len'] > 0 %}
+                  <div class="comment-group-title">
+                     <h3>Komentarze ({{choiced['len']}})</h3>
                   </div>
-                  <!-- <div class="single-comment-box comment_reply">
-                     <div class="main-comment">
-                        <div class="author-image">
-                           <img src="static/img/author-2.jpg" alt="author">
-                        </div>
-                        <div class="comment-text">
-                           <div class="comment-info">
-                              <h4>Jerix Ablin</h4>
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star-o"></i></li>
-                              </ul>
-                              <p>12 minitues ago</p>
-                           </div>
-                           <div class="comment-text-inner">
-                              <p>orem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo? </p>
-                           </div>
-                        </div>
-                     </div>
-                  </div> -->
-                  <div class="single-comment-box">
-                     <div class="main-comment">
-                        <div class="author-image">
-                           <img src="static/img/author-1.jpg" alt="author">
-                        </div>
-                        <div class="comment-text">
-                           <div class="comment-info">
-                              <h4>lona Mendil</h4>
-                              <ul>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                                 <li><i class="fa fa-star"></i></li>
-                              </ul>
-                              <p>4 minitues ago</p>
-                           </div>
-                           <div class="comment-text-inner">
-                              <p>Ne erat velit invidunt his. Eum in dicta veniam interesset, harum lupta definitionem. Vocibus suscipit prodesset vim ei, equidem perpetua eu per.</p>
+                  <div class="single-comment-item">
+                     {% for comm in choiced['comments'].values() %}
+                        <div class="single-comment-box">
+                           <div class="main-comment">
+                              {% if comm['avatar'] %}
+                                 <div class="author-image">
+                                    <img src="{{comm['avatar']}}" alt="author">
+                                 </div>
+                              {% else %}
+                                 <div class="author-image">
+                                    <img src="static/img/author-noface.jpg" alt="author">
+                                 </div>
+                              {% endif %}
+                              <div class="comment-text">
+                                 <div class="comment-info">
+                                    <h4>{{comm['user']}}</h4>
+                                    <ul>
+                                       {% for star in range(comm['user_stars']) %}
+                                          <li><i class="fa fa-star"></i></li>
+                                       {% endfor %}
+                                    </ul>
+                                    <p>{{comm['data-time']}}</p>
+                                 </div>
+                                 <div class="comment-text-inner">
+                                    <p>{{comm['message']}}</p>
+                                 </div>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </div>
+                     {% endfor %}
+                  {% endif %}
                </div>
             </div>
             <!-- /end comment list -->
