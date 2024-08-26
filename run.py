@@ -7,7 +7,6 @@ from googletrans import Translator
 import random
 import re
 
-from markupsafe import Markup
 from flask_session import Session
 
 # import pandas as pd
@@ -109,30 +108,6 @@ def take_data_table(key, table):
     dump_key = msq.connect_to_database(f'SELECT {key} FROM {table};')
     return dump_key
 
-
-
-# def generator_teamDB(lang='pl'):
-#     took_teamD = take_data_table('*', 'workers_team')
-#     teamData = []
-#     for data in took_teamD:
-#         theme = {
-#             'ID': int(data[0]),
-#             'EMPLOYEE_PHOTO': data[1],
-#             'EMPLOYEE_NAME': data[2],
-#             'EMPLOYEE_ROLE': data[3] if lang=='pl' else getLangText(data[3]),
-#             'EMPLOYEE_DEPARTMENT': data[4],
-#             'PHONE':'' if data[5] is None else data[5],
-#             'EMAIL': '' if data[6] is None else data[6],
-#             'FACEBOOK': '' if data[7] is None else data[7],
-#             'LINKEDIN': '' if data[8] is None else data[8],
-#             'DATE_TIME': data[9],
-#             'STATUS': int(data[10])
-#         }
-#         # dostosowane dla dmd inwestycje
-#         if data[4] == 'dmd budownictwo':
-#             teamData.append(theme)
-#     return teamData
-
 def generator_subsDataDB():
     subsData = []
     took_subsD = take_data_table('*', 'newsletter')
@@ -214,32 +189,6 @@ def generator_daneDBList_short(lang='pl'):
         daneList.append(theme)
     return daneList
 
-# def generator_daneDBList_prev_next(main_id):
-#     # Załóżmy, że msq.connect_to_database() zwraca listę tuple'i reprezentujących posty, np. [(1, 'Content1'), (2, 'Content2'), ...]
-#     took_allPost = msq.connect_to_database('SELECT ID FROM blog_posts ORDER BY ID DESC;')
-    
-#     # Przekształcenie wyników z bazy danych do listy ID dla łatwiejszego wyszukiwania
-#     id_list = [post[0] for post in took_allPost]
-    
-#     # Inicjalizacja słownika dla wyników
-#     pre_next = {
-#         'prev': None,
-#         'next': None
-#     }
-    
-#     # Znajdowanie indeksu podanego ID w liście
-#     if main_id in id_list:
-#         current_index = id_list.index(main_id)
-        
-#         # Sprawdzanie i przypisywanie poprzedniego ID, jeśli istnieje
-#         if current_index > 0:
-#             pre_next['prev'] = id_list[current_index - 1]
-        
-#         # Sprawdzanie i przypisywanie następnego ID, jeśli istnieje
-#         if current_index < len(id_list) - 1:
-#             pre_next['next'] = id_list[current_index + 1]
-    
-#     return pre_next
 
 def generator_daneDBList_cetegory():
     # Pobranie kategorii z bazy danych
@@ -533,29 +482,6 @@ def kontakt():
         pageTitle=pageTitle,
         nazwa_oferty=nazwa_oferty
         )
-
-# @app.route('/my-zespol')
-# def myZespol():
-#     session['page'] = 'myZespol'
-#     pageTitle = 'Zespół'
-
-
-#     if f'TEAM-ALL' not in session:
-#         team_list = generator_teamDB()
-#         session[f'TEAM-ALL'] = team_list
-#     else:
-#         team_list = session[f'TEAM-ALL']
-
-#     fullListTeam = []
-#     for i, member in enumerate(team_list):
-#        fullListTeam.append(member)
-    
-#     return render_template(
-#         f'myZespol.html',
-#         pageTitle=pageTitle,
-        
-#         fullListTeam=fullListTeam
-#         )
 
 @app.route('/blog')
 def blogs():
