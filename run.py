@@ -695,7 +695,7 @@ def findByCategory():
 def findByTags():
 
     query = request.args.get('tag')
-    if not query:
+    if not query and not request.args.get('page'):
         print('Błąd requesta')
         return redirect(url_for('index'))
         
