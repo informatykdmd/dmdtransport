@@ -143,18 +143,9 @@
                   </div>
                   <div class="widget__tag">
                      <ul>
-                        <li><a href="blog.html">Travel</a></li>
-                        <li><a href="blog.html">Lifestyle</a></li>
-                        <li><a href="blog.html">Photo</a></li>
-                        <li><a href="blog.html">Adventures</a></li>
-                        <li><a href="blog.html">Musician</a></li>
-                        <li><a href="blog.html">08</a></li>
-                        <li><a href="blog.html">Travel</a></li>
-                        <li><a href="blog.html">Lifestyle</a></li>
-                        <li><a href="blog.html">Photo</a></li>
-                        <li><a href="blog.html">Adventures</a></li>
-                        <li><a href="blog.html">Musician</a></li>
-                        <!-- <li><a href="blog.html">08</a></li> -->
+                        {% for tag in tag_list[:20] %}
+                           <li><a href="blog.html">tag</a></li>
+                        {% endfor %}
                      </ul>
                   </div>
                </div>

@@ -575,6 +575,12 @@ def blogs():
         recentPosts.append(theme)
     
     print(posts)
+    tag_set = set()
+    for post_dict in posts:
+        if 'tags' in post_dict:
+            for tag in post_dict['tags']:
+                tag_set.add(tag)
+    tag_list = [t for t in tag_set]
 
     return render_template(
         f'blog.html',
@@ -582,7 +588,8 @@ def blogs():
         cat_dict=cat_dict,
         recentPosts=recentPosts,
         pagination=pagination,
-        posts=posts
+        posts=posts,
+        tag_list=tag_list
         )
 
 @app.route('/blog-one', methods=['GET'])
