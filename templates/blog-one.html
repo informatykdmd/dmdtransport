@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <!-- Breadcrumb Start -->
-<section class="breadcrumb-area-2 jarallax" data-background="https://dmddomy.pl/images/blog/17240487051920.jpg">
+<section class="breadcrumb-area-2 jarallax" data-background="{{choiced['mainFoto']}}">
    <div class="container">
       <div class="row">
          <div class="col-md-12">
-            <div class="breadcrumb-box">
+            <div class="breadcrumb-box" style="padding-top: 4em;">
                <h2> </h2>
                <h2> </h2>
                <h2> </h2>
@@ -29,37 +29,35 @@
             <div class="blog-page-left">
                <div class="blog_info">
                   <figure class="blog-img wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
-                     <img src="https://dmddomy.pl/images/blog/1713336102750.jpg" alt="blog imag">
+                     <img src="{{choiced['contentFoto']}}" alt="blog imag">
                   </figure>
                   <div class="blog-detail wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
                      <div class="other_info">
                         <div class="blog-meta">
-                           <figure><img src="https://dmddomy.pl/images/team/tm-01-460x460-pawel_perlinski.png" alt="bloger image"></figure>
-                           <h4>John Deo</h4>
+                           <figure><img src="{{choiced['author_avatar']}}" alt="bloger image"></figure>
+                           <h4>{{choiced['author']}}</h4>
                         </div>
-                        <label><i class="fa fa-calendar"></i>Jan 30, 2020</label>
-                        <label><i class="fa fa-comments"></i>Komentarzy <a href="#">(144)</a></label>
+                        <label><i class="fa fa-calendar"></i>{{choiced['data']}}</label>
+                        <label><i class="fa fa-comments"></i>Komentarzy <a href="#">({{choiced['len']}})</a></label>
                      </div>
-                     <h3>Keep Work, For Safe Communities</h3>
-                     <p class="text-length">But I must explain to you how all this mistaken idea of denouncing pleasure and prai.craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer. Fusce quis nulla volutpat, rhoncus ligula ut, pulvinar nisi. In dapibus urna sit amet accumsan tristique. Donec odio ligula, luctus venenatis varius id, tincidunt ac ipsum. Cras commodo, velit nec aliquam dictum, tortor velit dictum ipsum, sed ornare nunc leo nec ipsum.</p>
-                     <!-- <p>dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                     <p>Fusce quis nulla volutpat, rhoncus ligula ut, pulvinar nisi. In dapibus urna sit amet accumsan tristique. Donec odio ligula, luctus venenatis varius id, tincidunt ac ipsum. Cras commodo, velit nec aliquam dictum, tortor velit dictum ipsum, sed ornare nunc leo nec ipsum.</p> -->
+                     <h3>{{choiced['title']}}</h3>
+                     <p class="text-length">
+                        {{choiced['introduction']}}
+                     </p>
                      <blockquote>
                         <p class="blockquote_desc">
-                           There are no secrets to success. It is the result of preparation,
-                           hard work, and learning from failure.lorem ipsum dolor sit amet.
+                           {{choiced['highlight']}}
                         </p>
-                        <h4 class="qoute_meta">- Jhon Doe</h4>
+                        <h4 class="qoute_meta"></h4>
                         <i class="fa fa-quote-left"></i>
                      </blockquote>
-                     <p>Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                     <p>Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                     <p>Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                     <p>Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                     {% for point in additionalList %}
+                        <p>{{point}}</p>
+                     {% endfor %}
                      <div class="blog-cat">
-                        <a href="#">AI</a>
-                        <a href="#">Data Science</a>
-                        <a href="#">Robotics</a>
+                        {% for tag in tags %}
+                           <a href="/find-by-tags?tag={{tag}}">{{tag}}</a>
+                        {% endfor %}
                      </div>
                   </div>
                </div>
