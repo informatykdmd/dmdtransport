@@ -574,13 +574,13 @@ def blogs():
         }
         recentPosts.append(theme)
     
-    print(posts)
+    # print(posts)
     tag_set = set()
     for post_dict in posts:
         if 'tags' in post_dict:
             for tag in post_dict['tags']:
                 tag_set.add(tag)
-    tag_list = [t for t in tag_set]
+    tag_list = [str(t).replace('#', '') for t in tag_set]
 
     return render_template(
         f'blog.html',
