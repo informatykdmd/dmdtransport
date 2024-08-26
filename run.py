@@ -292,6 +292,21 @@ def generator_daneDBList_one_post_id(id_post, lang='pl'):
             comments_dict[i]['e-mail'] = take_data_where_ID('CLIENT_EMAIL', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['avatar'] = take_data_where_ID('AVATAR_USER', 'newsletter', 'ID', com[3])[0][0]
             comments_dict[i]['data-time'] = format_date(com[4]) if lang=='pl' else format_date(com[4], False)
+
+            allCommentsByUser = take_data_where_ID('*', 'comments', 'AUTHOR_OF_COMMENT_ID', id_author)
+            
+            usr_stars_counter = 1
+            if comments_dict[i]['avatar']:
+                usr_stars_counter += 1
+
+            if len(allCommentsByUser) > 10:
+                usr_stars_counter += 4
+            elif len(allCommentsByUser) > 4:
+                usr_stars_counter += 2
+            elif len(allCommentsByUser) > 1:
+                usr_stars_counter += 1
+
+            comments_dict[i]['user_stars'] = usr_stars_counter
             
         theme = {
             'id': take_data_where_ID('ID', 'contents', 'ID', id_content)[0][0],
@@ -623,7 +638,6 @@ def blogOne():
             'data': t_post['data']
         }
         recentPosts.append(theme)
-    
 
     return render_template(
         f'blog-one.html',
