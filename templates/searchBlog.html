@@ -6,10 +6,10 @@
       <div class="row">
          <div class="col-md-12">
             <div class="breadcrumb-box">
-               <h2>BLOG</h2>
+               <h2>PRZESZUKIWANIE BLOGA</h2>
                <ul>
                   <li class="home"><a href="/"><span class="fas fa-home"></span></a></li>
-                  <li>BLOG</li>
+                  <li>{{pageTitle}}</li>
                </ul>
             </div>
          </div>
@@ -90,52 +90,7 @@
                      <a href="https://www.instagram.com/dmddomy/" class="instagram" target="_blank"><i class="fab fa-instagram"></i></a>
                   </div>
                </div>
-               <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.8s">
-                  <div class="widget-title text-center">
-                     <h4>Kategorie</h4>
-                  </div>
-                  <ul class="cat__list">
-                     {% for cat, count in cat_dict.items() %}
-                        {% if count > 1 %}
-                           <li><a href="/find-by-category?category={{cat}}"><i class="fa fa-angle-double-right"></i> {{cat}} <span>({{count}})</span></a></li>
-                        {% endif %}
-                     {% endfor %}
-                  </ul>
-               </div>
-               <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.0s">
-                  <div class="widget-title text-center">
-                     <h4>Polecane</h4>
-                  </div>
-                  <div class="widget__post">
-                     <ul>
-                        {% for rPost in recentPosts %}
-                        <li>
-                           <div class="widget__post-thumb">
-                              <img src="{{rPost['contentFoto']}}" alt="">
-                           </div>
-                           <div class="widget__post-content">
-                              <h6><a href="/blog-one?post={{rPost['id']}}">{{rPost['title']}}</a></h6>
-                              <span><i class="far fa-clock"></i>{{rPost['data']}}</span>
-                           </div>
-                        </li>
-                        {% endfor %} 
-                     </ul>
-
-                     
-                  </div>
-               </div>
-               <div class="widget wow fadeInUp" data-wow-duration="1s" data-wow-delay="1.2s">
-                  <div class="widget-title text-center">
-                     <h4>Tagi</h4>
-                  </div>
-                  <div class="widget__tag">
-                     <ul>
-                        {% for tag in tag_list[:10] %}
-                           <li><a href="/find-by-tags?tag={{tag}}">{{tag}}</a></li>
-                        {% endfor %}
-                     </ul>
-                  </div>
-               </div>
+               
             </aside>
          </div>
       </div>

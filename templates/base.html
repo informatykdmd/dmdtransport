@@ -111,8 +111,8 @@
                      <div class="centered">
                         <div id='search-box'>
                            <i id="close-btn" class="fa fa-times fa-2x"></i>
-                           <form action='/search' id='search-form' method='get' target='_top'>
-                              <input id='search-text' name='q' placeholder='Wpisz frazę tutaj ...' type='text' />
+                           <form method="POST" action="{{ url_for('searchBlog') }}" enctype="multipart/form-data" id='search-form' target='_top'>
+                              <input id='search-text' name='query' placeholder='Wpisz frazę tutaj ...' type='text' required />
                               <button id='search-button' type='submit'>
                               <i class="fa fa-search"></i>
                               </button>
