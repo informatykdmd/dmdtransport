@@ -510,9 +510,12 @@ def kontakt():
     session['page'] = 'kontakt'
     pageTitle = 'kontakt'
 
+    nazwa_oferty = request.args.get('settitle', '')
+
     return render_template(
         f'kontakt.html',
-        pageTitle=pageTitle
+        pageTitle=pageTitle,
+        nazwa_oferty=nazwa_oferty
         )
 
 # @app.route('/my-zespol')
