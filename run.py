@@ -697,13 +697,14 @@ def findByTags():
     query = request.args.get('tag')
 
     if not query:
-        print('Błąd requesta')
-        return redirect(url_for('index'))
-    else:
         if not 'last_search' in session:
-            session['last_search'] = query
+            print('Błąd requesta')
+            return redirect(url_for('index'))
         else:
             query = session['last_search']
+    else:
+        session['last_search'] = query
+
         
     sqlQuery = """
                 SELECT ID FROM contents 
