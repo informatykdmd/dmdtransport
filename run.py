@@ -696,7 +696,7 @@ def findByTags():
 
     query = request.args.get('tag')
 
-    if not query and not 'last_search' in session:
+    if not query:
         print('Błąd requesta')
         return redirect(url_for('index'))
     else:
