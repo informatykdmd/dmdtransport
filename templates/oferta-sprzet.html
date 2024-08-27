@@ -53,13 +53,13 @@
                      <span>{{item['kategoria']}}</span>
                      <h4><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">{{item['marka']}}</a></h4>
                      {% if item['cena-mc'] %}
-                     <p>Cena wynajmu miesięcznego: {{item['cena-mc']}} PLN</p>
+                     <p><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">Cena wynajmu miesięcznego: {{item['cena-mc']}} PLN</a></p>
                      {% elif item['cena-12xh'] %}
-                     <p>Cena wynajmu dziennego: {{item['cena-12xh'] * 12}} PLN</p>
+                     <p><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">Cena wynajmu dziennego: {{item['cena-12xh'] * 12}} PLN</a></p>
                      {% elif item['cena-godzina'] %}
-                     <p>Cena wynajmu na godziny:{{item['oferta-na-godziny']}} PLN/h</p>
+                     <p><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">Cena wynajmu na godziny:{{item['oferta-na-godziny']}} PLN/h</a></p>
                      {% else %}
-                     <p>Urządzenie dostępne do wynajmu po wcześniejszym kontakcie.</p>
+                     <p><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">Urządzenie dostępne do wynajmu po wcześniejszym kontakcie.</a></p>
                      {% endif %}
                   </div>
                </div>
