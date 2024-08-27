@@ -50,7 +50,7 @@
                      <img src="static/img/{{item['foto-list']}}" alt="project">
                   </div>
                   <div class="project-text">
-                     <span>{{item['kategoria']}}</span>
+                     <span><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">{{item['kategoria']}}</a></span>
                      <h4><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">{{item['marka']}}</a></h4>
                      {% if item['cena-mc'] %}
                      <p><a href="/sprzet-specyfikacja?setoffer={{item['id']}}">Cena wynajmu miesięcznego: {{item['cena-mc']}} PLN</a></p>
