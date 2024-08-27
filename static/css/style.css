@@ -3787,21 +3787,6 @@ aside .widget:last-child {
     vertical-align: middle;
 }
 
-/* .polityka-switch-label::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 15px;
-    height: 8px;
-    border-left: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    border-right: 3px solid transparent;
-    border-top: 3px solid transparent;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-} */
 .polityka-switch-label::after {
     content: "";
     position: absolute;
@@ -3828,6 +3813,24 @@ aside .widget:last-child {
     border-left-color: white;
     border-bottom-color: white;
     opacity: 1;
+}
+
+/* Dostosowanie stylu dla smartfonów */
+@media (max-width: 768px) {
+    .polityka-switch-label {
+        width: 16.67px;  /* Trzykrotnie mniejsze */
+        height: 16.67px; /* Trzykrotnie mniejsze */
+        border-width: 1.33px; /* Trzykrotnie mniejsze */
+    }
+
+    .polityka-switch-label::after {
+        width: 21px; /* Trzykrotnie mniejsze */
+        height: 11px; /* Trzykrotnie mniejsze */
+        border-left: 5px solid transparent;  /* Trzykrotnie mniejsze */
+        border-bottom: 5px solid transparent; /* Trzykrotnie mniejsze */
+        border-right: 5px solid transparent; 
+        border-top: 5px solid transparent;
+    }
 }
 
 .form-check-label {
