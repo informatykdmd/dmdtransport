@@ -3816,7 +3816,7 @@ aside .widget:last-child {
 }
 
 /* Dostosowanie stylu dla smartfonów */
-@media (max-width: 768px) {
+@media (max-width: 576px) {
     .polityka-switch-label {
         width: 16.67px;  /* Trzykrotnie mniejsze */
         height: 16.67px; /* Trzykrotnie mniejsze */
