@@ -3834,7 +3834,7 @@ aside .widget:last-child {
 }
 
 /* Dostosowanie stylu dla ekranów od 768px do 1000px */
-@media (min-width: 768px) and (max-width: 1000px) {
+@media (min-width: 576px) and (max-width: 1000px) {
     .polityka-switch-label {
         width: 25px;  /* Dwukrotnie mniejsze */
         height: 25px; /* Dwukrotnie mniejsze */
