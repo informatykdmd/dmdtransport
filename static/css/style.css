@@ -1766,6 +1766,7 @@ section {
 .blog-text {
 	text-align: center;
 	background: #fff;
+	opacity: 0.5;
 	padding: 40px 60px;
 	width: 90%;
 	margin: -100px auto 0;
