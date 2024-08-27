@@ -3818,9 +3818,9 @@ aside .widget:last-child {
 /* Dostosowanie stylu dla smartfonów */
 @media (max-width: 576px) {
     .polityka-switch-label {
-        width: 16.67px;  /* Trzykrotnie mniejsze */
-        height: 16.67px; /* Trzykrotnie mniejsze */
-        border-width: 1.33px; /* Trzykrotnie mniejsze */
+        width: 16px;  /* Trzykrotnie mniejsze */
+        height: 16px; /* Trzykrotnie mniejsze */
+        border-width: 1px; /* Trzykrotnie mniejsze */
     }
 
     .polityka-switch-label::after {
@@ -3830,6 +3830,24 @@ aside .widget:last-child {
         border-bottom: 5px solid transparent; /* Trzykrotnie mniejsze */
         border-right: 5px solid transparent; 
         border-top: 5px solid transparent;
+    }
+}
+
+/* Dostosowanie stylu dla ekranów od 768px do 1000px */
+@media (min-width: 768px) and (max-width: 1000px) {
+    .polityka-switch-label {
+        width: 25px;  /* Dwukrotnie mniejsze */
+        height: 25px; /* Dwukrotnie mniejsze */
+        border-width: 2px; /* Dwukrotnie mniejsze */
+    }
+
+    .polityka-switch-label::after {
+        width: 32px; /* Dwukrotnie mniejsze */
+        height: 17px; /* Dwukrotnie mniejsze */
+        border-left: 7px solid transparent;  /* Dwukrotnie mniejsze */
+        border-bottom: 7px solid transparent; /* Dwukrotnie mniejsze */
+        border-right: 7px solid transparent; 
+        border-top: 7px solid transparent;
     }
 }
 
