@@ -5,28 +5,57 @@
     Copyright 2019
 *************************************************************/
 
+// $(window).on('load', function () {
+
+// 	/*------------------
+// 	Isotope Filter
+// 	--------------------*/
+// 	var $container = $('.isotope_items');
+// 	$container.isotope();
+
+// 	$('.portfolio-filter li').on("click", function () {
+// 		$(".portfolio-filter li").removeClass("active");
+// 		$(this).addClass("active");
+// 		var selector = $(this).attr('data-filter');
+// 		$(".isotope_items").isotope({
+// 			filter: selector,
+// 			animationOptions: {
+// 				duration: 750,
+// 				easing: 'linear',
+// 				queue: false,
+// 			}
+// 		});
+// 		return false;
+// 	});
+
+// });
+
 $(window).on('load', function () {
+    var selectedFilter = "{{ selected_filter }}";
+    var $grid = $('.isotope_items').isotope({
+        itemSelector: '.col-lg-4',
+        layoutMode: 'fitRows'
+    });
 
-	/*------------------
-	Isotope Filter
-	--------------------*/
-	var $container = $('.isotope_items');
-	$container.isotope();
+    if (selectedFilter) {
+        $grid.isotope({ filter: selectedFilter });
+        $('.portfolio-filter li').removeClass('active');
+        $('.portfolio-filter li[data-filter="' + selectedFilter + '"]').addClass('active');
+    }
 
-	$('.portfolio-filter li').on("click", function () {
-		$(".portfolio-filter li").removeClass("active");
-		$(this).addClass("active");
-		var selector = $(this).attr('data-filter');
-		$(".isotope_items").isotope({
-			filter: selector,
-			animationOptions: {
-				duration: 750,
-				easing: 'linear',
-				queue: false,
-			}
-		});
-		return false;
-	});
-
+    $('.portfolio-filter li').on("click", function () {
+        $(".portfolio-filter li").removeClass("active");
+        $(this).addClass("active");
+        var selector = $(this).attr('data-filter');
+        $grid.isotope({
+            filter: selector,
+            animationOptions: {
+                duration: 750,
+                easing: 'linear',
+                queue: false,
+            }
+        });
+        return false;
+    });
 });
 
