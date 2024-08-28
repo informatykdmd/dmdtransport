@@ -87,18 +87,11 @@
 
       // Automatyczne ustawienie aktywnego filtra na podstawie parametru
       if (selectedFilter) {
-         $grid.isotope({ filter: selectedFilter });
+         // $grid.isotope({ filter: selectedFilter });
          $('.portfolio-filter li').removeClass('active');
          $('.portfolio-filter li[data-filter="' + selectedFilter + '"]').addClass('active');
       }
-      $(".isotope_items").isotope({
-			filter: selector,
-			animationOptions: {
-				duration: 750,
-				easing: 'linear',
-				queue: false,
-			}
-		});
+      
    });
 
 </script>
