@@ -578,10 +578,10 @@ def blogOne():
         )
 
 
-# @app.errorhandler(404)
-# def page_not_found(e):
-#     # Tutaj możesz przekierować do dowolnej trasy, którą chcesz wyświetlić jako stronę błędu 404.
-#     return redirect(url_for(f'index'))
+@app.errorhandler(404)
+def page_not_found(e):
+    # Tutaj możesz przekierować do dowolnej trasy, którą chcesz wyświetlić jako stronę błędu 404.
+    return redirect(url_for(f'index'))
 
 
 @app.route('/find-by-category', methods=['GET'])

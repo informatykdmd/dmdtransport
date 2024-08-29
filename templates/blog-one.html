@@ -1,4 +1,16 @@
 {% extends 'base.html' %}
+{% block meta_tags %}
+   <meta property="og:url" content="https://www.dmdlogistyka.pl" /> 
+   <meta property="og:type" content="website" />
+   <meta property="og:title" content="{{choiced['title']}}" />
+   <meta property="og:description" content="{{choiced['introduction']}}" />
+   <meta property="og:image" content="{{choiced['mainFoto']}}" /> 
+   <meta name="description" content="{{choiced['introduction']}}">
+   <meta name="author" content="Mikael Amnezja3">
+   <meta name="keywords" content="Transport maszyn, Logistyka budowlana, Wynajem sprzętu ciężkiego, Bezpieczny transport, Profesjonalna obsługa maszyn, HDS, wywrotki, dźwigi, Transport specjalistyczny, Niezawodność usług, Terminowość dostaw, DMD Transport">
+   <meta name="robots" content="index, follow">
+   <meta name="revisit-after" content="7 days">
+{% endblock %}
 {% block content %}
 <!-- Breadcrumb Start -->
 <section class="breadcrumb-area-2 jarallax" data-background="{{choiced['mainFoto']}}">
