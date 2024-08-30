@@ -68,9 +68,7 @@
             {% endfor %}
             
          </div>
-         <!-- <div class="section-action text-center">
-            <a href="javascript:;" class="cta-btn btn_orange">Zadzwoń <i class="fa fa-phone"></i></a>
-         </div> -->
+
       </div>
    </div>
 </section>
@@ -81,8 +79,7 @@
    $(document).ready(function(){
       var selectedFilter = "{{ selected_filter }}";
       var $grid = $('.isotope_items').isotope({
-         itemSelector: '.col-lg-4',
-         // layoutMode: 'fitRows'
+         itemSelector: '.col-lg-4'
       });
 
       // Automatyczne ustawienie aktywnego filtra na podstawie parametru
