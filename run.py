@@ -311,9 +311,9 @@ def is_valid_phone(phone):
 ##      ######           ###
 ############################
 
-@app.route('/.well-known/pki-validation/certum.txt')
-def download_file():
-    return send_from_directory(app.root_path, 'certum.txt')
+# @app.route('/.well-known/pki-validation/certum.txt')
+# def download_file():
+#     return send_from_directory(app.root_path, 'certum.txt')
 
 @app.template_filter('smart_truncate')
 def smart_truncate(content, length=400):
