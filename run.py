@@ -826,6 +826,49 @@ def sendMess():
 
 @app.route('/ask-phone', methods=['POST'])
 def askPhone():
+    try:
+        form_data = request.json
+        CLIENT_PHONE = form_data['phone']
+
+        if CLIENT_PHONE == '' or not is_valid_phone(CLIENT_PHONE):
+            return jsonify({
+                'success': False,
+                'message': 'Musisz podać poprawny numer telefonu!'
+            })
+
+        CLIENT_NAME = 'Użytkownik strony DMD Transport'
+        CLIENT_EMAIL = 'brak@adresu.email'
+        CLIENT_SUBJECT = 'Prośba o kontakt ze strony DMD Transport'
+        CLIENT_MESSAGE = f'Proszę o kontakt {CLIENT_PHONE}'
+
+        zapytanie_sql = '''
+                INSERT INTO contact 
+                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
+                    VALUES (%s, %s, %s, %s, %s);
+                '''
+        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+
+        if msq.insert_to_database(zapytanie_sql, dane):
+            return jsonify({
+                'success': True,
+                'message': 'Numer został wysłany!'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'message': 'Wystąpił problem z wysłaniem numeru telefonu!'
+            })
+
+    except Exception as e:
+        # Zaloguj błąd po stronie serwera (opcjonalnie)
+        print(f'Błąd: {e}')
+        return jsonify({
+            'success': False,
+            'message': 'Wewnętrzny błąd serwera. Spróbuj ponownie później.'
+        }), 500
+    
+
+def askPhone_old():
     if request.method == 'POST':
         form_data = request.json
         CLIENT_NAME = 'Użytkownik strony DMD Transport'
