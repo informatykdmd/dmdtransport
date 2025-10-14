@@ -801,12 +801,33 @@ def sendMess():
                     'message': f'Musisz podać treść wiadomości!'
                 })
 
+        # --- meta z żądania (Flask/FastAPI) ---
+        ref = request.headers.get('Referer')
+        ua  = request.headers.get('User-Agent')
+        # Host: w Flask jest też request.host; w FastAPI/Starlette z ASGI bywa tylko nagłówek
+        host = request.headers.get('Host') or getattr(request, 'host', None)
+
+        # Realne IP z uwzględnieniem proxy/CDN:
+        xff = request.headers.get('X-Forwarded-For', '')
+        ip_from_xff = xff.split(',')[0].strip() if xff else None
+        ip = (request.headers.get('CF-Connecting-IP') or ip_from_xff or request.remote_addr)
+
         zapytanie_sql = '''
-                INSERT INTO contact 
-                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
-                    VALUES (%s, %s, %s, %s, %s);
-                '''
-        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+            INSERT INTO contact 
+                (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE, remote_ip, referer, user_agent, source_host) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+        '''
+        dane = (
+            CLIENT_NAME,
+            CLIENT_EMAIL,
+            CLIENT_SUBJECT,
+            CLIENT_MESSAGE,
+            1,
+            ip,
+            ref,
+            ua,
+            host
+        )
     
         if msq.insert_to_database(zapytanie_sql, dane):
             return jsonify(
@@ -841,12 +862,33 @@ def askPhone():
         CLIENT_SUBJECT = 'Prośba o kontakt ze strony DMD Transport'
         CLIENT_MESSAGE = f'Proszę o kontakt {CLIENT_PHONE}'
 
+        # --- meta z żądania (Flask/FastAPI) ---
+        ref = request.headers.get('Referer')
+        ua  = request.headers.get('User-Agent')
+        # Host: w Flask jest też request.host; w FastAPI/Starlette z ASGI bywa tylko nagłówek
+        host = request.headers.get('Host') or getattr(request, 'host', None)
+
+        # Realne IP z uwzględnieniem proxy/CDN:
+        xff = request.headers.get('X-Forwarded-For', '')
+        ip_from_xff = xff.split(',')[0].strip() if xff else None
+        ip = (request.headers.get('CF-Connecting-IP') or ip_from_xff or request.remote_addr)
+
         zapytanie_sql = '''
-                INSERT INTO contact 
-                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
-                    VALUES (%s, %s, %s, %s, %s);
-                '''
-        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+            INSERT INTO contact 
+                (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE, remote_ip, referer, user_agent, source_host) 
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+        '''
+        dane = (
+            CLIENT_NAME,
+            CLIENT_EMAIL,
+            CLIENT_SUBJECT,
+            CLIENT_MESSAGE,
+            1,
+            ip,
+            ref,
+            ua,
+            host
+        )
 
         if msq.insert_to_database(zapytanie_sql, dane):
             return jsonify({
@@ -868,45 +910,45 @@ def askPhone():
         }), 500
     
 
-def askPhone_old():
-    if request.method == 'POST':
-        form_data = request.json
-        CLIENT_NAME = 'Użytkownik strony DMD Transport'
-        CLIENT_EMAIL = 'brak@adresu.email'
-        CLIENT_SUBJECT = 'Prośba o kontakt ze strony DMD Transport'
-        CLIENT_PHONE = form_data['phone']
-        CLIENT_MESSAGE = f'Proszę o kontakt {CLIENT_PHONE}'
+# def askPhone_old():
+#     if request.method == 'POST':
+#         form_data = request.json
+#         CLIENT_NAME = 'Użytkownik strony DMD Transport'
+#         CLIENT_EMAIL = 'brak@adresu.email'
+#         CLIENT_SUBJECT = 'Prośba o kontakt ze strony DMD Transport'
+#         CLIENT_PHONE = form_data['phone']
+#         CLIENT_MESSAGE = f'Proszę o kontakt {CLIENT_PHONE}'
 
         
-        if CLIENT_PHONE == '' or not is_valid_phone(CLIENT_PHONE):
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Musisz podać swój nr telefonu!'
-                })
+#         if CLIENT_PHONE == '' or not is_valid_phone(CLIENT_PHONE):
+#             return jsonify(
+#                 {
+#                     'success': False, 
+#                     'message': f'Musisz podać swój nr telefonu!'
+#                 })
         
 
-        zapytanie_sql = '''
-                INSERT INTO contact 
-                    (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
-                    VALUES (%s, %s, %s, %s, %s);
-                '''
-        dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
+#         zapytanie_sql = '''
+#                 INSERT INTO contact 
+#                     (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
+#                     VALUES (%s, %s, %s, %s, %s);
+#                 '''
+#         dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
     
-        if msq.insert_to_database(zapytanie_sql, dane):
-            return jsonify(
-                {
-                    'success': True, 
-                    'message': f'Numer został wysłany!'
-                })
-        else:
-            return jsonify(
-                {
-                    'success': False, 
-                    'message': f'Wystąpił problem z wysłaniem Twojego numeru telefonu, skontaktuj się w inny sposób lub spróbuj później!'
-                })
+#         if msq.insert_to_database(zapytanie_sql, dane):
+#             return jsonify(
+#                 {
+#                     'success': True, 
+#                     'message': f'Numer został wysłany!'
+#                 })
+#         else:
+#             return jsonify(
+#                 {
+#                     'success': False, 
+#                     'message': f'Wystąpił problem z wysłaniem Twojego numeru telefonu, skontaktuj się w inny sposób lub spróbuj później!'
+#                 })
 
-    return redirect(url_for('index'))
+#     return redirect(url_for('index'))
 
 @app.route('/add-subs-pl', methods=['POST'])
 def addSubs():
@@ -925,12 +967,26 @@ def addSubs():
                 allowed = False
 
         if allowed:
+            # --- meta z żądania (Flask/FastAPI) ---
+            ref = request.headers.get('Referer')
+            ua  = request.headers.get('User-Agent')
+            host = request.headers.get('Host') or getattr(request, 'host', None)
+
+            # Realne IP z uwzględnieniem proxy/CDN:
+            xff = request.headers.get('X-Forwarded-For', '')
+            ip_from_xff = xff.split(',')[0].strip() if xff else None
+            ip = (request.headers.get('CF-Connecting-IP') or ip_from_xff or request.remote_addr)
+
+            # (opcjonalnie) bardzo prosty anty-bot: wymagaj swojej domeny w referer + niepusty UA
+            # if (not ua or not ua.strip()) or (ref and 'dmdbudownictwo.pl' not in ref):
+            #     abort(403)
+
             zapytanie_sql = '''
-                    INSERT INTO newsletter 
-                        (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH) 
-                        VALUES (%s, %s, %s, %s);
-                    '''
-            dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH)
+                INSERT INTO newsletter 
+                    (CLIENT_NAME, CLIENT_EMAIL, ACTIVE, USER_HASH, remote_ip, referer, user_agent, source_host) 
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s);
+            '''
+            dane = (SUB_NAME, SUB_EMAIL, 0, USER_HASH, ip, ref, ua, host)
             if msq.insert_to_database(zapytanie_sql, dane):
                 return jsonify(
                     {
