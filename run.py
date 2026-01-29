@@ -3,7 +3,7 @@ from flask_paginate import Pagination, get_page_args
 import mysqlDB as msq
 import secrets
 from datetime import datetime
-from googletrans import Translator
+import requests
 import random
 import re
 
@@ -27,11 +27,23 @@ app.config['SECRET_KEY'] = secrets.token_hex(16)
 app.config['SESSION_TYPE'] = 'filesystem'  # Możesz wybrać inny backend, np. 'redis', 'sqlalchemy', itp.
 Session(app)
 
-def getLangText(text):
-    """Funkcja do tłumaczenia tekstu z polskiego na angielski"""
-    translator = Translator()
-    translation = translator.translate(str(text), dest='en')
-    return translation.text
+def getLangText(text, dest="en", source="pl"):
+    if not text:
+        return text
+    # bezpiecznik: nie tłumacz "ścian"
+    if len(text) > 8000:
+        return text
+    try:
+        r = requests.post(
+            "http://127.0.0.1:5055/translate",
+            json={"text": text, "source": source, "target": dest, "format": "text"},
+            timeout=(2, 8),
+        )
+        r.raise_for_status()
+        return r.json().get("text", text)
+    except Exception as e:
+        print(f"Exception Error: {e}")
+        return text
 
 def format_date(date_input, pl=True):
     ang_pol = {
@@ -909,46 +921,6 @@ def askPhone():
             'message': 'Wewnętrzny błąd serwera. Spróbuj ponownie później.'
         }), 500
     
-
-# def askPhone_old():
-#     if request.method == 'POST':
-#         form_data = request.json
-#         CLIENT_NAME = 'Użytkownik strony DMD Transport'
-#         CLIENT_EMAIL = 'brak@adresu.email'
-#         CLIENT_SUBJECT = 'Prośba o kontakt ze strony DMD Transport'
-#         CLIENT_PHONE = form_data['phone']
-#         CLIENT_MESSAGE = f'Proszę o kontakt {CLIENT_PHONE}'
-
-        
-#         if CLIENT_PHONE == '' or not is_valid_phone(CLIENT_PHONE):
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Musisz podać swój nr telefonu!'
-#                 })
-        
-
-#         zapytanie_sql = '''
-#                 INSERT INTO contact 
-#                     (CLIENT_NAME, CLIENT_EMAIL, SUBJECT, MESSAGE, DONE) 
-#                     VALUES (%s, %s, %s, %s, %s);
-#                 '''
-#         dane = (CLIENT_NAME, CLIENT_EMAIL, CLIENT_SUBJECT, CLIENT_MESSAGE, 1)
-    
-#         if msq.insert_to_database(zapytanie_sql, dane):
-#             return jsonify(
-#                 {
-#                     'success': True, 
-#                     'message': f'Numer został wysłany!'
-#                 })
-#         else:
-#             return jsonify(
-#                 {
-#                     'success': False, 
-#                     'message': f'Wystąpił problem z wysłaniem Twojego numeru telefonu, skontaktuj się w inny sposób lub spróbuj później!'
-#                 })
-
-#     return redirect(url_for('index'))
 
 @app.route('/add-subs-pl', methods=['POST'])
 def addSubs():
