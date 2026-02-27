@@ -3862,3 +3862,17 @@ aside .widget:last-child {
 	margin-top: 20px;
 }
 
+.orly-area .orly-img {
+   max-width: 160px;
+   margin-bottom: 20px;
+}
+
+.orly-area h3 {
+   margin-bottom: 12px;
+}
+
+.orly-area p {
+   max-width: 700px;
+   margin: 0 auto;
+   opacity: 0.9;
+}
