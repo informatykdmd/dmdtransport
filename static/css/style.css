@@ -3876,3 +3876,9 @@ aside .widget:last-child {
    margin: 0 auto;
    opacity: 0.9;
 }
+
+@media (max-width: 576px) {
+	.orly-area .orly-img {
+		max-width: 260px;
+	}
+}
